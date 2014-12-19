@@ -30,7 +30,7 @@ public class ProjectV extends Activity {
         ListView listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setLayoutParams(new LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT, Gravity.CENTER));
+        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
 
