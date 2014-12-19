@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent" android:columnCount="5" android:rowCount="1" android:clickable="true"
-            android:alignmentMode="alignMargins">
+<LinearLayout android:id="@+id/GroupListViewItemLinearLayout" xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent" android:clickable="true"
+            android:alignmentMode="alignMargins" android:orientation="vertical" android:baselineAligned="true">
 
     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/imageView" android:layout_row="0" android:layout_column="0"
-            android:minHeight="@dimen/group_image_small" android:minWidth="@dimen/group_image_small"
-            android:maxHeight="@dimen/group_image_small" android:maxWidth="@dimen/group_image_small"
-            android:layout_columnSpan="4" android:contentDescription="Group image small"
-            android:src="@drawable/ic_launcher" android:padding="10dp"/>
-    <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textAppearance="?android:attr/textAppearanceMedium"
-            android:text=" გიო ვარ გიოო"
-            android:id="@+id/textView" android:layout_row="0" android:layout_column="4" android:textStyle="normal"
-            android:typeface="sans" android:singleLine="true"/>
-</GridLayout>
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:id="@+id/GroupImageSmall" android:contentDescription="Group Image Small"/>
+    <TextView android:id="@+id/GroupNameSmall" android:layout_width="fill_parent" android:layout_height="fill_parent"/>
+</LinearLayout>
