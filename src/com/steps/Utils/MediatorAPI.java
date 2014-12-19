@@ -1,5 +1,6 @@
 package com.steps.Utils;
 
+import com.steps.Exceptions.ServerErrorException;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 import com.steps.Objects.UserObject;
@@ -9,15 +10,15 @@ import com.steps.Objects.UserObject;
  */
 public interface MediatorAPI {
 
-    public void insertUser(UserObject userObject);
+    public void insertUser(UserObject userObject) throws ServerErrorException;
 
     public UserObject getUser(int googleID);
 
-    public void insertGroup(GroupObject groupObject);
+    public void insertGroup(GroupObject groupObject) throws ServerErrorException;
 
     public GroupObject getGroup(int groupID);
 
-    public void insertTask(TaskObject taskObject);
+    public void insertTask(TaskObject taskObject) throws ServerErrorException;
 
     public TaskObject getTask(int taskID);
 }
