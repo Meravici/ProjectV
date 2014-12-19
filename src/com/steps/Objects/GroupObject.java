@@ -12,13 +12,15 @@ public class GroupObject implements Serializable {
     private int id;
     private String name;
     private Timestamp lastUpdate;
+    private short imageID;
     private Set<UserObject> userObjects;
     private Set<TaskObject> taskObjects;
 
-    public GroupObject(int id, String name, Timestamp lastUpdate) {
+    public GroupObject(int id, String name, Timestamp lastUpdate, short imageID) {
         this.id = id;
         this.name = name;
         this.lastUpdate = lastUpdate;
+        this.imageID = imageID;
         this.userObjects = new HashSet<UserObject>();
         this.taskObjects = new HashSet<TaskObject>();
     }
@@ -45,6 +47,14 @@ public class GroupObject implements Serializable {
 
     public void setLastUpdate(Timestamp lastUpdate) {
         this.lastUpdate = lastUpdate;
+    }
+
+    public short getImageID() {
+        return imageID;
+    }
+
+    public void setImageID(short imageID) {
+        this.imageID = imageID;
     }
 
     public void addUser(UserObject userObject) {
