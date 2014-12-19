@@ -1,23 +1,23 @@
 package com.steps.Utils;
 
-import com.steps.Objects.Group;
-import com.steps.Objects.Task;
-import com.steps.Objects.User;
+import com.steps.Objects.GroupObject;
+import com.steps.Objects.TaskObject;
+import com.steps.Objects.UserObject;
 
 /**
  * Created by Alex on 12/20/2014.
  */
 public interface MediatorAPI {
 
-    public void insertUser(User user);
+    public void insertUser(UserObject userObject);
 
-    public User getUser(int googleID);
+    public UserObject getUser(int googleID);
 
-    public void insertGroup(Group group);
+    public void insertGroup(GroupObject groupObject);
 
-    public Group getGroup(int groupID);
+    public GroupObject getGroup(int groupID);
 
-    public void insertTask(Task task);
+    public void insertTask(TaskObject taskObject);
 
-    public Task getTask(int taskID);
+    public TaskObject getTask(int taskID);
 }

@@ -1,7 +1,6 @@
 package com.steps.Objects;
 
 import java.io.Serializable;
-import java.sql.Time;
 import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
@@ -9,19 +8,19 @@ import java.util.Set;
 /**
  * Created by Alex on 12/19/2014.
  */
-public class Group implements Serializable {
+public class GroupObject implements Serializable {
     private int id;
     private String name;
     private Timestamp lastUpdate;
-    private Set<User> users;
-    private Set<Task> tasks;
+    private Set<UserObject> userObjects;
+    private Set<TaskObject> taskObjects;
 
-    public Group(int id, String name, Timestamp lastUpdate) {
+    public GroupObject(int id, String name, Timestamp lastUpdate) {
         this.id = id;
         this.name = name;
         this.lastUpdate = lastUpdate;
-        this.users = new HashSet<User>();
-        this.tasks = new HashSet<Task>();
+        this.userObjects = new HashSet<UserObject>();
+        this.taskObjects = new HashSet<TaskObject>();
     }
 
     public int getId() {
@@ -48,12 +47,12 @@ public class Group implements Serializable {
         this.lastUpdate = lastUpdate;
     }
 
-    public void addUser(User user) {
-        this.users.add(user);
+    public void addUser(UserObject userObject) {
+        this.userObjects.add(userObject);
     }
 
-    public void addTask(Task task) {
-        this.tasks.add(task);
+    public void addTask(TaskObject taskObject) {
+        this.taskObjects.add(taskObject);
     }
 
     @Override
@@ -62,8 +61,8 @@ public class Group implements Serializable {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", lastUpdate=" + lastUpdate +
-                ", users=" + users +
-                ", tasks=" + tasks +
+                ", users=" + userObjects +
+                ", tasks=" + taskObjects +
                 '}';
     }
 }

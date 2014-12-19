@@ -1,9 +1,9 @@
 package com.steps.Utils;
 
 import com.google.gson.Gson;
-import com.steps.Objects.Group;
-import com.steps.Objects.Task;
-import com.steps.Objects.User;
+import com.steps.Objects.GroupObject;
+import com.steps.Objects.TaskObject;
+import com.steps.Objects.UserObject;
 
 /**
  * Created by Alex on 12/20/2014.
@@ -15,28 +15,28 @@ public class Mediator implements MediatorAPI {
         gson = new Gson();
     }
 
-    public void insertUser(User user) {
-        String jsonUser = gson.toJson(user);
+    public void insertUser(UserObject userObject) {
+        String jsonUser = gson.toJson(userObject);
     }
 
-    public User getUser(int googleID) {
-
+    public UserObject getUser(int googleID) {
+        return null;
     }
 
-    public void insertGroup(Group group) {
-        String jsonGroup = gson.toJson(group);
+    public void insertGroup(GroupObject groupObject) {
+        String jsonGroup = gson.toJson(groupObject);
     }
 
-    public Group getGroup(int groupID) {
-
+    public GroupObject getGroup(int groupID) {
+        return null;
     }
 
-    public void insertTask(Task task) {
-        String jsonTask = gson.toJson(task);
+    public void insertTask(TaskObject taskObject) {
+        String jsonTask = gson.toJson(taskObject);
     }
 
 
-    public Task getTask(int taskID) {
-
+    public TaskObject getTask(int taskID) {
+        return null;
     }
 }

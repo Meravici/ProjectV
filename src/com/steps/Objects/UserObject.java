@@ -5,11 +5,11 @@ import java.io.Serializable;
 /**
  * Created by Alex on 12/19/2014.
  */
-public class User implements Serializable {
+public class UserObject implements Serializable {
     private String googleID;
     private String phoneNumber;
 
-    public User(String googleID, String phoneNumber) {
+    public UserObject(String googleID, String phoneNumber) {
         this.googleID = googleID;
         this.phoneNumber = phoneNumber;
     }
