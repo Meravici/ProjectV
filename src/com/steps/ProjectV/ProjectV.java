@@ -16,6 +16,7 @@ import com.example.ProjectV.R;
 import com.steps.Objects.GroupObject;
 import com.steps.adapters.GroupAdapter;
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class ProjectV extends Activity {
@@ -40,22 +41,21 @@ public class ProjectV extends Activity {
 
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
-//        for(int i=0; i<100; i++) {
-//            arrayOfGroups.add(new GroupObject(1, "name", null));
-//        }
-//        // Create the adapter to convert the array to views
-//        GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
-//        // Attach the adapter to a ListView
-//        listView.setAdapter(adapter);
-//
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                // LinearLayout ani = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
-//                // ani.startAnimation(new VisibleAni(1.0f, 1.0f, 0.0f, 1.0f, 800, ani, true,true));
-//                // ani.setVisibility(View.VISIBLE);
-//            }
-//        });
+        for(short i=0; i<100; i++) {
+            arrayOfGroups.add(new GroupObject(1, "name", new Timestamp(1l), i)); //TODO
+        }
+        // Create the adapter to convert the array to views
+        GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
+        // Attach the adapter to a ListView
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
+                linearLayout.
+            }
+        });
 
     }
 }

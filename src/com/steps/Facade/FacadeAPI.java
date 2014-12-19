@@ -19,7 +19,7 @@ public interface FacadeAPI {
     /*
      * Registers new group
      */
-    public void registerGroup(GroupObject group, UserObject user, short imageId);
+    public void registerGroup(GroupObject group, UserObject user);
 
     /*
      * Adds user to Group
