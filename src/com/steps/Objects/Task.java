@@ -80,4 +80,17 @@ public class Task implements Serializable {
     public void setVolunteer(User volunteer) {
         this.volunteer = volunteer;
     }
+
+    @Override
+    public String toString() {
+        return "Task{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", creationDate=" + creationDate +
+                ", dueDate=" + dueDate +
+                ", status=" + status +
+                ", author=" + author +
+                ", volunteer=" + volunteer +
+                '}';
+    }
 }
