@@ -22,7 +22,7 @@ import java.util.ArrayList;
 /**
  * Created by Xato on 12/20/2014.
  */
-public class Constructor {
+public class Constructor implements ConstructorAPI {
     private String telephoneNumber;
     private Mediator mediator;
     private StorageWriter storageWriter;
