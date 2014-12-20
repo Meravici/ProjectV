@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.List;
 import java.util.Timer;
 
 public class FacadeMain implements FacadeAPI {
@@ -60,7 +61,7 @@ public class FacadeMain implements FacadeAPI {
             }
         }
         protected void onPostExecute(Long result){
-            myActivity.successCallback(user, grps);
+            myActivity.successCallback(this.usr, this.grps);
         }
     }
     private class register_group_async extends AsyncTask<GroupObject,Integer, Void> {

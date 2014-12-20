@@ -62,7 +62,7 @@ public class ProjectV extends Activity {
 
     }
 
-    public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
+    public void successCallback(UserObject loggedInUser, GroupObject[] groups){
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
         for(int i=0; i<100; i++) {

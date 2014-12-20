@@ -5,11 +5,18 @@ import com.steps.Exceptions.ServerErrorException;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 import com.steps.Objects.UserObject;
+import org.apache.http.HttpConnection;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
+import java.io.BufferedReader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
 import java.net.URI;
+import java.net.URL;
+import java.util.List;
 
 /**
  * Created by Alex on 12/20/2014.
@@ -57,11 +64,28 @@ public class Mediator implements MediatorAPI {
         return null;
     }
 
-    private void sendData(String jsonString) throws ServerErrorException {
+    public GroupObject[] getGroups(UserObject usr) {
+
+    }
+
+    private String sendData(String jsonString) throws ServerErrorException {
         try {
-            HttpGet httpRequest = new HttpGet();
-            httpRequest.setURI(new URI("http:/192.168.84.157:8888" + jsonString));
-            httpClient.execute(httpRequest);
+            URL url = new URL("http:/192.168.84.157:8888" + jsonString);
+            HttpURLConnection cn = (HttpURLConnection) url.openConnection();
+            //HttpGet httpRequest = new HttpGet();
+            //httpClient.execute(httpRequest);
+            //httpRequest.setURI(new URI("http:/192.168.84.157:8888" + jsonString));
+            if (cn.getResponseCode() == 200){
+                BufferedReader r = new BufferedReader(new InputStreamReader(cn.getInputStream()));
+                StringBuilder total = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    total.append(line);
+                }
+                return total.toString();
+            }
+
+            cn.getInputStream();
             // TODO test 404
         } catch (Exception e) {
             throw new ServerErrorException();
