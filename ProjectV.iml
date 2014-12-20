@@ -29,5 +29,14 @@
     </orderEntry>
     <orderEntry type="library" exported="" name="google-play-services" level="project" />
     <orderEntry type="library" name="gcm" level="project" />
+    <orderEntry type="module-library" exported="">
+      <library>
+        <CLASSES>
+          <root url="jar://D:/Android/android-sdk-windows/extras/android/support/v4/android-support-v4.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
