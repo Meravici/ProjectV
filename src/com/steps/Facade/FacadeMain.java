@@ -4,6 +4,7 @@ package com.steps.Facade;
  * Created by Rati on 20/12/14.
  */
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.os.AsyncTask;
@@ -35,9 +36,11 @@ import java.util.Timer;
 public class FacadeMain implements FacadeAPI {
     private final static String server = "http:/192.168.84.157:8888/";
     private MediatorAPI mediator;
+    private Activity myActivity;
 
-    public FacadeMain(MediatorAPI mediator){
+    public FacadeMain(MediatorAPI mediator,Activity myActivity){
         this.mediator = mediator;
+        this.myActivity=myActivity;
     }
 
     private class login_user_async extends AsyncTask<String,Integer, Void> {
