@@ -7,6 +7,11 @@ import java.sql.Date;
  * Created by Alex on 12/19/2014.
  */
 public class TaskObject implements Serializable {
+
+    public static final int STATUS_PENDING = 0;
+    public static final int STATUS_STARTED = 1;
+    public static final int STATUS_FINISHED = 2;
+
     private int id;
     private String name;
     private Date creationDate;

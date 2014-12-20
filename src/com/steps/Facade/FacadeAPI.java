@@ -13,17 +13,17 @@ public interface FacadeAPI {
      * Tries to login user, if not registered yet registers him and logins
      * Throws ServerErrorException and NotConnectedException
      */
-    public UserObject LoginUser(String id) throws ServerErrorException; //not connected to internet exception;
+    public UserObject loginUser(String id) throws ServerErrorException; //not connected to internet exception;
 
 
     /*
      * Registers new group
      */
-    public void registerGroup(GroupObject group, UserObject user);
+    public void registerGroup(GroupObject group);
 
     /*
      * Adds user to Group
      */
-    public void addToGroup(GroupObject group, String userId, UserObject me);
+    public void addToGroup(GroupObject group, UserObject user);
 }
 

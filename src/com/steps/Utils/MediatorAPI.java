@@ -12,13 +12,13 @@ public interface MediatorAPI {
 
     public void insertUser(UserObject userObject) throws ServerErrorException;
 
-    public UserObject getUser(int googleID);
+    public UserObject getUser(String googleID) throws ServerErrorException;
 
     public void insertGroup(GroupObject groupObject) throws ServerErrorException;
 
-    public GroupObject getGroup(int groupID);
+    public GroupObject getGroup(int groupID) throws ServerErrorException;
 
     public void insertTask(TaskObject taskObject) throws ServerErrorException;
 
-    public TaskObject getTask(int taskID);
+    public TaskObject getTask(int taskID) throws ServerErrorException;
 }

@@ -25,36 +25,42 @@ public class Mediator implements MediatorAPI {
 
     public void insertUser(UserObject userObject) throws ServerErrorException {
         String jsonUser = gson.toJson(userObject);
-        sendData(jsonUser);
+        sendData("/android/user/add" + jsonUser);
     }
 
-    public UserObject getUser(int googleID) {
+    public UserObject getUser(String googleID) throws ServerErrorException {
+        sendData("/android/user/get" + googleID);
+        // TODO get dara from GCM server
         return null;
     }
 
     public void insertGroup(GroupObject groupObject) throws ServerErrorException {
         String jsonGroup = gson.toJson(groupObject);
-        sendData(jsonGroup);
+        sendData("/android/group/add" + jsonGroup);
     }
 
-    public GroupObject getGroup(int groupID) {
+    public GroupObject getGroup(int groupID) throws ServerErrorException {
+        sendData("/android/group/get" + Integer.toString(groupID));
+        // TODO get dara from GCM server
         return null;
     }
 
     public void insertTask(TaskObject taskObject) throws ServerErrorException {
         String jsonTask = gson.toJson(taskObject);
-        sendData(jsonTask);
+        sendData("android/task/add" + jsonTask);
     }
 
 
-    public TaskObject getTask(int taskID) {
+    public TaskObject getTask(int taskID) throws ServerErrorException {
+        sendData("android/task/get" + Integer.toString(taskID));
+        // TODO get dara from GCM server
         return null;
     }
 
     private void sendData(String jsonString) throws ServerErrorException {
         try {
             HttpGet httpRequest = new HttpGet();
-            httpRequest.setURI(new URI("http:/192.168.84.157:8888/" + jsonString));
+            httpRequest.setURI(new URI("http:/192.168.84.157:8888" + jsonString));
             httpClient.execute(httpRequest);
             // TODO test 404
         } catch (Exception e) {
