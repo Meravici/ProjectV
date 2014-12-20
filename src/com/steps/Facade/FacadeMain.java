@@ -56,7 +56,7 @@ public class FacadeMain implements FacadeAPI {
             try {
                 this.usr = mediator.getUser(params[0]);
                 System.out.println(this.usr.getGoogleID());
-              //  this.grps = mediator.getGroups(this.usr);
+                this.grps = mediator.getGroups(this.usr);
             } catch (ServerErrorException e) {
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
@@ -122,6 +122,7 @@ public class FacadeMain implements FacadeAPI {
     }
     
     public void addToGroup(GroupObject group, UserObject me){
-
+        group.addUser(me);
+        mediator.insertGroup();
     }
 }
