@@ -16,6 +16,8 @@ public interface MediatorAPI {
 
     public UserObject getUser(String googleID) throws ServerErrorException;
 
+    public void addUser(GroupObject groupObject, UserObject userObject) throws ServerErrorException;
+
     public void insertGroup(GroupObject groupObject) throws ServerErrorException;
 
     public GroupObject getGroup(int groupID) throws ServerErrorException;
@@ -23,6 +25,8 @@ public interface MediatorAPI {
     public void insertTask(TaskObject taskObject) throws ServerErrorException;
 
     public TaskObject getTask(int taskID) throws ServerErrorException;
+
+    public void addTask(GroupObject groupObject, TaskObject taskObject) throws ServerErrorException;
 
     public GroupObject[] getGroups(UserObject usr) throws ServerErrorException;
 }

@@ -1,11 +1,11 @@
 package com.steps.Objects;
 
+import com.google.gson.internal.bind.ArrayTypeAdapter;
+
 import java.io.Serializable;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by Alex on 12/19/2014.
@@ -16,8 +16,8 @@ public class GroupObject implements Serializable {
     private String name;
     private Timestamp lastUpdate;
     private short imageID;
-    private List<UserObject> userObjects;
-    private List<TaskObject> taskObjects;
+    private ArrayList<UserObject> userObjects;
+    private ArrayList<TaskObject> taskObjects;
 
     public GroupObject(int id, String name, Timestamp lastUpdate, short imageID) {
         this.id = id;
@@ -64,10 +64,20 @@ public class GroupObject implements Serializable {
 
     public void addUser(UserObject userObject) {
         this.userObjects.add(userObject);
+        // TODO sorted insert
+    }
+
+    public List<UserObject> getUserObjects() {
+        return userObjects;
     }
 
     public void addTask(TaskObject taskObject) {
         this.taskObjects.add(taskObject);
+        // TODO serted insert
+    }
+
+    public ArrayList<TaskObject> getTasks() {
+        return taskObjects;
     }
 
     @Override

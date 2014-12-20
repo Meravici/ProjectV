@@ -32,8 +32,8 @@ public class GroupAdapter extends ArrayAdapter<GroupObject> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.group, parent, false);
         }
 
-//        if(group.hasOpenTasks()){
-//            convertView.setBackgroundColor(R.color.groupHasNotifications);
+//        if(group.countPendingTasks() > 0){
+//            convertView.setBackgroundColor(parent.getResources().getColor(R.color.groupHasNotifications));
 //        }
 
         // Lookup view for data population

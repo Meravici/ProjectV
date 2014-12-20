@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+    <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TableRow>
+            <ImageView android:id="@+id/TaskStatus"/> <!--Status-->
+            <TableLayout>
+                <TableRow>
+                    <TextView android:id="@+id/TaskTitle"/> <!--Title-->
+                </TableRow>
+                <TableRow>
+                    <TextView android:id="@+id/TaskAuthor"/> <!--Author-->
+                </TableRow>
+            </TableLayout>
+        </TableRow>
+    </TableLayout>
+
+    <TableLayout android:layout_width="wrap_content" android:layout_height="wrap_content">
+        <TableRow>
+            <TextView android:id="@+id/TaskDate"/>
+        </TableRow>
+        <TableRow>
+            <TextView android:id="@+id/TaskDeadline"/>
+        </TableRow>
+    </TableLayout>
+
+</RelativeLayout>
