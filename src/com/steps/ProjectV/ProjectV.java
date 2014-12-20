@@ -11,6 +11,7 @@ import android.widget.AbsListView.LayoutParams;
 import com.example.ProjectV.R;
 import com.steps.Facade.FacadeAPI;
 import com.steps.Facade.FacadeMain;
+import com.steps.Facade.FacadeMock;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.UserObject;
 import com.steps.Utils.Globals;
@@ -36,22 +37,22 @@ public class ProjectV extends Activity {
 
 
 
-        this.facade = new FacadeMain(new Mediator(), this);
+        this.facade = new FacadeMock(this);
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
         progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
-//
-//        try{
-//            facade.loginUser("000000000000000000000");
-//
-//        }catch(Exception e){
-//            System.out.println("error");
-//        }
+
+        try{
+            facade.loginUser("000000000000000000000");
+
+        }catch(Exception e){
+            System.out.println("error");
+        }
         short a = 1;
-        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
+//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
 
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
@@ -71,11 +72,11 @@ public class ProjectV extends Activity {
 
     }
 
-    public void successCallback(UserObject loggedInUser, GroupObject[] groups){
+    public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
         // Construct the data source
         arrayOfGroups= new ArrayList<GroupObject>();
-        for(int i=0; i<groups.length; i++) {
-            arrayOfGroups.add(groups[i]); //TODO
+        for(int i=0; i<groups.size(); i++) {
+            arrayOfGroups.add(groups.get(i)); //TODO
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);

@@ -17,6 +17,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.*;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -77,10 +79,10 @@ public class Mediator implements MediatorAPI {
         sendData("/android/group/task/" + Integer.toString(groupObject.getId()) + "/" + Integer.toString(taskObject.getId()));
     }
 
-    public GroupObject[] getGroups(UserObject usr) throws ServerErrorException {
+    public ArrayList<GroupObject> getGroups(UserObject usr) throws ServerErrorException {
         String data = sendData("/android/user/groups/" + usr.getGoogleID());
         GroupObject[] groups = gson.fromJson(data, GroupObject[].class);
-        return groups;
+        return (ArrayList<GroupObject>) Arrays.asList(groups);
     }
 
     private String sendData(String jsonString) throws ServerErrorException {

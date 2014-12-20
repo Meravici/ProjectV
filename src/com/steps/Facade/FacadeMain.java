@@ -35,6 +35,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 
@@ -49,7 +50,7 @@ public class FacadeMain implements FacadeAPI {
     }
 
     private class login_user_async extends AsyncTask<String,Integer, Void> {
-        GroupObject[] grps;
+        ArrayList<GroupObject> grps;
         UserObject usr;
         @Override
         protected Void doInBackground(String ... params) {
@@ -70,7 +71,7 @@ public class FacadeMain implements FacadeAPI {
         }
         protected void onPostExecute(Long result){
             final UserObject users = this.usr;
-            final GroupObject[] groups = this.grps;
+            final ArrayList<GroupObject> groups = this.grps;
             myActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {

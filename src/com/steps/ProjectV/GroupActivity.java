@@ -28,7 +28,7 @@ public class GroupActivity extends Activity {
         name.setText(group.getName());
         //tasks
         ListView listView = (ListView) findViewById(R.id.GroupTasks);
-
+        System.out.println("bla: " + group.getTasks());
         TaskAdapter adapter = new TaskAdapter(this, group.getTasks());
 
         listView.setAdapter(adapter);
