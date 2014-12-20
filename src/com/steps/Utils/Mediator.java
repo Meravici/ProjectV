@@ -44,29 +44,33 @@ public class Mediator implements MediatorAPI {
 
     public void insertGroup(GroupObject groupObject) throws ServerErrorException {
         String jsonGroup = gson.toJson(groupObject);
-        sendData("/android/group/add/" + jsonGroup);
+        String groupID = sendData("/android/group/add/" + jsonGroup);
+        groupObject.setId(Integer.parseInt(groupID));
     }
 
     public GroupObject getGroup(int groupID) throws ServerErrorException {
-        sendData("/android/group/get/" + Integer.toString(groupID));
-        // TODO get dara from GCM server
-        return null;
+        String data = sendData("/android/group/get/" + Integer.toString(groupID));
+        GroupObject group = gson.fromJson(data, GroupObject.class);
+        return group;
     }
 
     public void insertTask(TaskObject taskObject) throws ServerErrorException {
         String jsonTask = gson.toJson(taskObject);
-        sendData("android/task/add/" + jsonTask);
+        String taskID = sendData("/android/task/add/" + jsonTask);
+        taskObject.setId(Integer.parseInt(taskID));
     }
 
 
     public TaskObject getTask(int taskID) throws ServerErrorException {
-        sendData("android/task/get/" + Integer.toString(taskID));
-        // TODO get dara from GCM server
-        return null;
+        String data = sendData("/android/task/get/" + Integer.toString(taskID));
+        TaskObject task = gson.fromJson(data, TaskObject.class);
+        return task;
     }
 
-    public GroupObject[] getGroups(UserObject usr) {
-        return null;
+    public GroupObject[] getGroups(UserObject usr) throws ServerErrorException {
+        String data = sendData("/android/user/getgroups/" + usr.getGoogleID());
+        GroupObject[] groups = gson.fromJson(data, GroupObject[].class);
+        return groups;
     }
 
     private String sendData(String jsonString) throws ServerErrorException {

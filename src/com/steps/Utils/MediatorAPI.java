@@ -24,5 +24,5 @@ public interface MediatorAPI {
 
     public TaskObject getTask(int taskID) throws ServerErrorException;
 
-    public GroupObject[] getGroups(UserObject usr);
+    public GroupObject[] getGroups(UserObject usr) throws ServerErrorException;
 }

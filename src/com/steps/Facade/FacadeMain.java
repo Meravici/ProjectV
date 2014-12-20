@@ -56,7 +56,7 @@ public class FacadeMain implements FacadeAPI {
             try {
                 this.usr = mediator.getUser(params[0]);
                 System.out.println(this.usr.getGoogleID());
-              //  this.grps = mediator.getGroups(this.usr);
+                this.grps = mediator.getGroups(this.usr);
             } catch (ServerErrorException e) {
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
