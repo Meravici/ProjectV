@@ -36,7 +36,7 @@ public class GCM extends GCMBaseIntentService {
                     updateGroupCache(tmp.get("Group_ID").getAsInt(),new Gson().fromJson(tmp.get("userObject"),UserObject.class));
                 break;
             case 1://ახალ ჯგუფში გაგაწევრიანეს
-                    updateGroupCache_create(new Gson().fromJson(tmp.get("Group"),GroupObject.class);
+                    updateGroupCache_create(new Gson().fromJson(tmp.get("Group"),GroupObject.class));
                 break;
             case 2://ტასკის დამატება
                 updateTaskCache_add(new Gson().fromJson(tmp.get("Task"),TaskObject.class));

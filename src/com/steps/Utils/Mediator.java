@@ -1,23 +1,22 @@
 package com.steps.Utils;
 
 import com.google.gson.Gson;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonParser;
 import com.steps.Exceptions.ServerErrorException;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 import com.steps.Objects.UserObject;
-import org.apache.http.HttpConnection;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.*;
-import java.util.List;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 
 /**
  * Created by Alex on 12/20/2014.
@@ -79,8 +78,14 @@ public class Mediator implements MediatorAPI {
 
     public GroupObject[] getGroups(UserObject usr) throws ServerErrorException {
         String data = sendData("/android/user/groups/" + usr.getGoogleID());
-        GroupObject[] groups = gson.fromJson(data, GroupObject[].class);
-        return groups;
+        JsonArray grparr = new JsonParser().parse(data).getAsJsonObject().getAsJsonArray("Groups");
+        GroupObject[] output =new GroupObject[grparr.size()];
+        for(int i=0; i< grparr.size();i++) {
+            grparr.get(i).getAsInt();
+            data = sendData("/android/user/groups/get/" + usr.getGoogleID());
+            output[i]=new Gson().fromJson(data,GroupObject.class);
+        }
+        return output;
     }
 
     private String sendData(String jsonString) throws ServerErrorException {

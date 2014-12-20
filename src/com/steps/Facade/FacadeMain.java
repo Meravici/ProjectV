@@ -1,42 +1,16 @@
 package com.steps.Facade;
 
+import android.os.AsyncTask;
 import com.steps.Exceptions.ServerErrorException;
-import com.steps.Objects.*;
+import com.steps.Objects.GroupObject;
+import com.steps.Objects.TaskObject;
+import com.steps.Objects.UserObject;
+import com.steps.ProjectV.ProjectV;
+import com.steps.Utils.MediatorAPI;
 
 /**
  * Created by Rati on 20/12/14.
  */
-
-import android.app.Activity;
-import android.app.Dialog;
-import android.app.ProgressDialog;
-import android.os.AsyncTask;
-import com.steps.Exceptions.ServerErrorException;
-import com.steps.Objects.GroupObject;
-import com.steps.Objects.UserObject;
-import com.steps.ProjectV.ProjectV;
-import com.steps.Utils.Mediator;
-import com.steps.Utils.MediatorAPI;
-import org.apache.http.HttpHost;
-import org.apache.http.HttpRequest;
-import org.apache.http.HttpResponse;
-import org.apache.http.client.ClientProtocolException;
-import org.apache.http.client.HttpClient;
-import org.apache.http.client.ResponseHandler;
-import org.apache.http.client.methods.HttpGet;
-import org.apache.http.client.methods.HttpUriRequest;
-import org.apache.http.conn.ClientConnectionManager;
-import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.params.HttpParams;
-import org.apache.http.protocol.HttpContext;
-
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.net.URL;
-import java.security.acl.Group;
-import java.util.List;
-import java.util.Timer;
 
 public class FacadeMain implements FacadeAPI {
 
@@ -98,7 +72,7 @@ public class FacadeMain implements FacadeAPI {
         @Override
         protected Void doInBackground(Object ... params) {
             try {
-                mediator.addUserToGroup((GroupObject) params[0],(UserObject) params[1]);
+                //mediator.addUserToGroup((GroupObject) params[0],(UserObject) params[1]);
             } catch (Exception e) {
 
             }
