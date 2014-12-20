@@ -1,12 +1,10 @@
 package com.steps.Facade;
 
-import android.os.AsyncTask;
 import com.steps.Exceptions.ServerErrorException;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 import com.steps.Objects.UserObject;
-import com.steps.ProjectV.ProjectV;
-import com.steps.Utils.MediatorAPI;
+import org.steps.app.Activities.ProjectV;
 
 import java.sql.Date;
 import java.sql.Timestamp;

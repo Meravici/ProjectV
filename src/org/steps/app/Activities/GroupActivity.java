@@ -1,4 +1,4 @@
-package com.steps.ProjectV;
+package org.steps.app.Activities;
 
 import android.app.Activity;
 import android.media.Image;
