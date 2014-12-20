@@ -13,7 +13,10 @@ import android.view.ViewGroup;
 import android.widget.*;
 import android.widget.AbsListView.LayoutParams;
 import com.example.ProjectV.R;
+import com.steps.Facade.FacadeAPI;
+import com.steps.Facade.FacadeMain;
 import com.steps.Objects.GroupObject;
+import com.steps.Utils.Mediator;
 import com.steps.adapters.GroupAdapter;
 
 import java.sql.Timestamp;
@@ -24,10 +27,13 @@ public class ProjectV extends Activity {
      * Called when the activity is first created.
      */
 
+    private FacadeAPI facade;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
+        this.facade = new FacadeMain(new Mediator(), this);
         ListView listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
