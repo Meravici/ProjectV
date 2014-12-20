@@ -28,7 +28,9 @@ public class Mediator implements MediatorAPI {
         sendData("/android/user/set" + jsonUser);
     }
 
-    public UserObject getUser(String googleID) {
+    public UserObject getUser(String googleID) throws ServerErrorException {
+        sendData("/android/user/get" + googleID);
+        // TODO get dara from GCM server
         return null;
     }
 
@@ -37,7 +39,9 @@ public class Mediator implements MediatorAPI {
         sendData("/android/group/set" + jsonGroup);
     }
 
-    public GroupObject getGroup(int groupID) {
+    public GroupObject getGroup(int groupID) throws ServerErrorException {
+        sendData("/android/group/get" + Integer.toString(groupID));
+        // TODO get dara from GCM server
         return null;
     }
 
@@ -47,7 +51,9 @@ public class Mediator implements MediatorAPI {
     }
 
 
-    public TaskObject getTask(int taskID) {
+    public TaskObject getTask(int taskID) throws ServerErrorException {
+        sendData("android/task/get" + Integer.toString(taskID));
+        // TODO get dara from GCM server
         return null;
     }
 
