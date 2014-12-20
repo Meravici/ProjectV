@@ -48,20 +48,19 @@ public class FacadeMain implements FacadeAPI {
     }
 
     private class login_user_async extends AsyncTask<String,Integer, Void> {
+        GroupObject[] grps;
+        UserObject usr;
         @Override
         protected Void doInBackground(String ... params) {
             try {
-                HttpGet httpRequest = new HttpGet();
-                HttpClient httpClient=new DefaultHttpClient();
-                httpRequest.setURI(new URI(params[0]));
-                httpClient.execute(httpRequest);
-            } catch (Exception e) {
-                e.printStackTrace();
+                this.usr = mediator.getUser(params[0]);
+                this.grps = mediator.getGroups(this.usr);
+            } catch (ServerErrorException e) {
+                myActivity.failureCallback();
             }
-            return null;
         }
         protected void onPostExecute(Long result){
-
+            myActivity.successCallback(user, grps);
         }
     }
     private class register_group_async extends AsyncTask<GroupObject,Integer, Void> {
@@ -85,10 +84,7 @@ public class FacadeMain implements FacadeAPI {
         @Override
         protected Void doInBackground(String ... params) {
             try {
-                HttpGet httpRequest = new HttpGet();
-                HttpClient httpClient=new DefaultHttpClient();
-                httpRequest.setURI(new URI(params[0]));
-                httpClient.execute(httpRequest);
+
             } catch (Exception e) {
                 e.printStackTrace();
             }
