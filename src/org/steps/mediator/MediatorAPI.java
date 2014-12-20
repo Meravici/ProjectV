@@ -9,7 +9,7 @@ import java.security.Timestamp;
  * Created by Xato on 12/20/2014.
  */
 public interface MediatorAPI {
-    public void login(String googleID, String phoneNumber) throws ServerErrorException;//Register too
+    public void login(String googleID, String phoneNumber, String reg_id) throws ServerErrorException;//Register too
     public void createNewGroup(String name, int imageID) throws ServerErrorException;//afterwards call addUserToGroup add timestamps //TODO
     public void addUserToGroup(String phoneNumber, int groupID) throws ServerErrorException;
     public void leaveGroup(int groupID, String myID) throws ServerErrorException;

@@ -35,7 +35,7 @@ public class startGCM {
     public void registerClient() {
         if(checkPlayServices()){
             gcm=GoogleCloudMessaging.getInstance(myActivity);
-            String ragid=getRegistrationId(context);
+            Globals.USER_REG_ID = getRegistrationId(context);
         }
     }
     private String getRegistrationId(Context context) {

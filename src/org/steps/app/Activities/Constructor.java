@@ -15,6 +15,7 @@ import org.steps.storage.MyStorageListener;
 import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
+import org.steps.utils.Globals;
 import org.steps.utils.ServerErrorException;
 import org.steps.utils.startGCM;
 
@@ -47,7 +48,7 @@ public class Constructor implements ConstructorAPI {
         loadingDialog.setIndeterminate(true);
         loadingDialog.setMessage("გთხოვთ დაიცადოთ");
         loadingDialog.setCancelable(true);
-
+        this.loadingDialog.show();
 
         startGCM gcm = new startGCM(activity, storageWriter ,activity.getApplicationContext());
     }
@@ -80,6 +81,7 @@ public class Constructor implements ConstructorAPI {
         GroupAdapter adapter = new GroupAdapter(activity, groups);
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
+
         stopSpinner();
     }
 
@@ -89,7 +91,7 @@ public class Constructor implements ConstructorAPI {
             @Override
             public void run() {
                 try {
-                    mediator.login(name, telephoneNumber);
+                    mediator.login(name, telephoneNumber, Globals.USER_REG_ID);
                 } catch (ServerErrorException e) {
                     activity.errorCallback();
                 }

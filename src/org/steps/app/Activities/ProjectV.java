@@ -34,23 +34,25 @@ public class ProjectV extends Activity {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
 
-//        this.constructor = new Constructor(this);
-        this.constructor = new ConstructorMoc(this);
+        this.constructor = new Constructor(this);
+//        this.constructor = new ConstructorMoc(this);
         listView = (ListView) findViewById(R.id.GroupListView);
+        listView.setEmptyView(findViewById(R.id.first_view));
         // Create a progress bar to display while the list loads
-        ProgressBar progressBar = new ProgressBar(this);
-        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
-        progressBar.setIndeterminate(true);
-        listView.setEmptyView(progressBar);
-
+//        ProgressBar progressBar = new ProgressBar(this);
+//        Globals.PROGRESSBAR = progressBar;
+//        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
+//        progressBar.setIndeterminate(true);
+//        listView.setEmptyView(progressBar);
+        //listView.setEmptyView(findViewById(R.id.first_view));
         constructor.login("000000000000000000000");
         constructor.getGroups();
 
 
 
         // Must add the progress bar to the root of the layout
-        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-        root.addView(progressBar);
+//        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
+//        root.addView(progressBar);
         final Activity local = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

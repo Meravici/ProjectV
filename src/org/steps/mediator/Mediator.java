@@ -35,8 +35,9 @@ public class Mediator implements MediatorAPI {
     }
 
     @Override
-    public void login(String googleID, String phoneNumber) throws ServerErrorException {
+    public void login(String googleID, String phoneNumber, String reg_id) throws ServerErrorException {
         User user = new User(googleID, phoneNumber);
+        user.setRegistrationID(reg_id);
         String userData = gson.toJson(user);
         sendData("/android/user/add/" + userData);
 
