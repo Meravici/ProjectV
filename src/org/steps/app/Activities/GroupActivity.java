@@ -7,9 +7,10 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import com.example.ProjectV.R;
-import com.steps.Objects.GroupObject;
-import com.steps.Utils.Globals;
-import com.steps.adapters.TaskAdapter;
+import org.steps.adapters.TaskAdapter;
+import org.steps.app.objects.Group;
+import org.steps.utils.Globals;
+
 
 /**
  * Created by Xato on 12/20/2014.
@@ -19,7 +20,7 @@ public class GroupActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_view);
-        GroupObject group = Globals.GROUP;
+        Group group = Globals.GROUP;
         //Image
         ImageView image = (ImageView) findViewById(R.id.GroupImageLarge);
 //        image.setImageDrawable();

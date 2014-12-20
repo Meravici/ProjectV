@@ -1,5 +1,6 @@
 package org.steps.app.Activities;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
@@ -14,6 +15,7 @@ import org.steps.storage.MyStorageListener;
 import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
+import org.steps.utils.ServerErrorException;
 
 import java.util.ArrayList;
 
@@ -32,8 +34,8 @@ public class Constructor {
 
     public Constructor(ProjectV activity){
         telephoneNumber = getTelephoneNumber(activity.getApplicationContext());
-        this.mediator = new Mediator();
-        this.storageReader = new StorageReader();
+        this.mediator = new Mediator(storageReader, storageWriter);
+        this.storageReader = new StorageReader(storageListener, activity);
         this.storageWriter = new StorageWriter(storageListener, activity);
         this.storageListener = new MyStorageListener(activity.getApplicationContext());
         this.activity = activity;
@@ -77,8 +79,12 @@ public class Constructor {
         stopSpinner();
     }
 
-    public boolean login(String s){
-        return mediator.login(s);
+    public void login(String s){
+        try {
+            mediator.login(s, telephoneNumber);
+        } catch (ServerErrorException e) {
+            activity.errorCallback();
+        }
     }
 
 

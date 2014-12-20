@@ -12,6 +12,16 @@ public class MyStorageListener extends StorageListener {
     }
 
     @Override
+    public void onUserLoggedIn() {
+        //TODO
+    }
+
+    @Override
+    public void onGroupCreated() {
+        //TODO
+    }
+
+    @Override
     public void onUserAddedToGroup() {
         //TODO
     }

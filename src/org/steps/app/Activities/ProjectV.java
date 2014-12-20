@@ -39,11 +39,8 @@ public class ProjectV extends Activity {
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
 
-        if(constructor.login("000000000000000000000")){
-            constructor.getGroups();
-        }else{
-            errorCallback();
-        }
+        constructor.login("000000000000000000000");
+
 
 
         // Must add the progress bar to the root of the layout
