@@ -40,11 +40,11 @@ import java.util.Timer;
 public class FacadeMain implements FacadeAPI {
 
     private MediatorAPI mediator;
-    private Activity myActivity;
+    private ProjectV myActivity;
 
-    public FacadeMain(MediatorAPI mediator,Activity myActivity){
+    public FacadeMain(MediatorAPI mediator,ProjectV myActivity){
         this.mediator = mediator;
-        this.myActivity=myActivity;
+        this.myActivity = myActivity;
     }
 
     private class login_user_async extends AsyncTask<String,Integer, Void> {

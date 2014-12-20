@@ -62,11 +62,11 @@ public class ProjectV extends Activity {
 
     }
 
-    private void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
+    public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
-        for(short i=0; i<100; i++) {
-            arrayOfGroups.add(new GroupObject(1, "სახელი", new Timestamp(1l), i)); //TODO
+        for(int i=0; i<100; i++) {
+            arrayOfGroups.add(groups.get(i)); //TODO
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
@@ -74,7 +74,7 @@ public class ProjectV extends Activity {
         listView.setAdapter(adapter);
     }
 
-    private void failureCallback(){
+    public void failureCallback(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
         builder.setTitle("CLOSE");
         builder.setMessage("Do You Want to Close the Application").setCancelable(false)
