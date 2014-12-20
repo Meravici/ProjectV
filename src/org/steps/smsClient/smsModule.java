@@ -10,8 +10,6 @@ import com.google.gson.Gson;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import org.steps.app.objects.Group;
-import org.steps.app.objects.Task;
-import org.steps.app.objects.User;
 import org.steps.storage.StorageWriter;
 
 /**
@@ -44,28 +42,32 @@ public class smsModule extends BroadcastReceiver {
                 if(msgs[i].getOriginatingAddress().equals(serverPhone)){
                     String message = msgs[i].getMessageBody();
                     JsonObject messageJson = new JsonParser().parse(message).getAsJsonObject();
+
+                    Group group;
                     switch(messageJson.get("command").getAsInt()){
-                        case 0://addUserToGroup
-                            User user = new Gson().fromJson(messageJson.get("user").getAsString(),User.class);
-                            Group group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
-                            storage.addUserToGroup(User,Group);
+                        case 0://createNewGroup
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.createNewGroup(group.getId(),messageJson.get("group").getAsString());
                             break;
-                        case 1://removeUserFromGroup
-                            User user = new Gson().fromJson(messageJson.get("user").getAsString(),User.class);
-                            Group group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
-                            storage.removeUserFromGroup(user,group);
+                        case 1://addUserToGroup(int groupID, String groupData)
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.addUserToGroup(group.getId(), messageJson.get("group").getAsString());
                             break;
-                        case 2://AddTaskToGroup
-                            Task task = new Gson().fromJson(messageJson.get("task").getAsString(),Task.class);
-                            Group group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
-                            storage.AddTaskToGroup(task,group);
+                        case 2://removeUserFromGroup(int groupID, String groupData)
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.removeUserFromGroup(group.getId(), messageJson.get("group").getAsString());
                             break;
-                        case 3://SetTaskPendingStatus
-                            Task task =  new Gson().fromJson(messageJson.get("task").getAsString(),Task.class);
-                            storage.SetTaskPendingStatus(task,Task.STATUS_PENDING);
+                        case 3://AddTaskToGroup(int groupID, String groupData)
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.AddTaskToGroup(group.getId(), messageJson.get("group").getAsString());
                             break;
-                        case 4://SetTaskFinishedStatus
-                            storage.SetTaskFinishedStatus(task,Task.STATUS_FINISHED);
+                        case 4://setTaskStartStatus(int groupID, String groupData)
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.setTaskStartStatus(group.getId(), messageJson.get("group").getAsString());
+                            break;
+                        case 5://setTaskFinishedStatus(int groupID, String groupData)
+                            group = new Gson().fromJson(messageJson.get("group").getAsString(),Group.class);
+                            storage.setTaskFinishedStatus(group.getId(), messageJson.get("group").getAsString());
                             break;
                     }
                 }
