@@ -103,10 +103,12 @@ public class FacadeMain implements FacadeAPI {
         tmp.execute(id);
         return null;
     }
-    public void registerGroup(GroupObject group, UserObject user){
+    public void registerGroup(GroupObject group){
         register_group_async tmp = new register_group_async();
         tmp.execute(group);
     }
-    public void addToGroup(GroupObject group, String userId, UserObject me){
+    
+    public void addToGroup(GroupObject group, UserObject me){
+
     }
 }
