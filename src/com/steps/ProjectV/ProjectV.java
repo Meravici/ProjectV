@@ -1,19 +1,13 @@
 package com.steps.ProjectV;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
 import android.content.DialogInterface;
-import android.content.Loader;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
 import android.widget.AbsListView.LayoutParams;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import com.steps.Facade.FacadeAPI;
 import com.steps.Facade.FacadeMain;
@@ -22,7 +16,6 @@ import com.steps.Objects.UserObject;
 import com.steps.Utils.Mediator;
 import com.steps.adapters.GroupAdapter;
 
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class ProjectV extends Activity {
@@ -37,8 +30,6 @@ public class ProjectV extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
-
-
 
 
         this.facade = new FacadeMain(new Mediator(), this);
