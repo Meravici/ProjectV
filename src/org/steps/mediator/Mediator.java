@@ -2,6 +2,7 @@ package org.steps.mediator;
 
 import com.google.gson.Gson;
 import org.steps.app.objects.Group;
+import org.steps.app.objects.Task;
 import org.steps.app.objects.User;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
@@ -15,6 +16,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.security.Timestamp;
+import java.sql.Date;
 import java.util.Calendar;
 
 /**
@@ -72,10 +74,28 @@ public class Mediator implements MediatorAPI {
 
     }
 
+
+
+    public void insertTask(Task taskObject) throws ServerErrorException {
+        String jsonTask = gson.toJson(taskObject);
+        String taskID = sendData("/android/task/add/" + jsonTask);
+        taskObject.setId(Integer.parseInt(taskID));
+    }
+
+
+    public void addTask(Group groupObject, Task taskObject) throws ServerErrorException {
+        groupObject.addTask(taskObject);
+        sendData("/android/group/task/" + Integer.toString(groupObject.getId()) + "/" + Integer.toString(taskObject.getId()));
+    }
+
     @Override
-    public void addTaskToGroup(String title, Timestamp dueDate) throws ServerErrorException {
-//        insertTask();
-//        addTask();
+    public void addTaskToGroup(String title, Timestamp dueDate, User author, int group_id) throws ServerErrorException {
+        Task task = new Task(0,title,null, Date.valueOf(dueDate.toString()),0,author, null); //TODO
+
+        insertTask(task);
+
+        Group group = gson.fromJson(storageReader.getGroupData(group_id), Group.class);
+        addTask(group ,task);
     }
 
     @Override
