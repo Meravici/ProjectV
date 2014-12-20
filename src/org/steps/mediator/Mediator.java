@@ -74,8 +74,6 @@ public class Mediator implements MediatorAPI {
 
     }
 
-
-
     private void insertTask(Task taskObject) throws ServerErrorException {
         String jsonTask = gson.toJson(taskObject);
         String taskID = sendData("/android/task/add/" + jsonTask);
