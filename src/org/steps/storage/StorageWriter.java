@@ -1,7 +1,6 @@
 package org.steps.storage;
 
 import android.app.Activity;
-import android.content.Context;
 
 /**
  * Created by Xato on 12/20/2014.
