@@ -85,6 +85,11 @@ public class Mediator implements MediatorAPI {
         return (ArrayList<GroupObject>) Arrays.asList(groups);
     }
 
+    @Override
+    public void addUserToGroup(GroupObject param, UserObject param1) {
+        
+    }
+
     private String sendData(String jsonString) throws ServerErrorException {
         try {
 
