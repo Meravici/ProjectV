@@ -34,7 +34,7 @@ import java.net.URL;
 import java.util.Timer;
 
 public class FacadeMain implements FacadeAPI {
-    private final static String server = "http:/192.168.84.157:8888/";
+
     private MediatorAPI mediator;
     private Activity myActivity;
 
@@ -94,7 +94,7 @@ public class FacadeMain implements FacadeAPI {
 
         }
     }
-    public UserObject LoginUser(String id) throws ServerErrorException {
+    public UserObject loginUser(String id) throws ServerErrorException {
         login_user_async tmp = new login_user_async();
         tmp.execute(id);
         return null;

@@ -2,27 +2,30 @@ package com.steps.Objects;
 
 import java.io.Serializable;
 import java.sql.Timestamp;
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 /**
  * Created by Alex on 12/19/2014.
  */
 public class GroupObject implements Serializable {
+
     private int id;
     private String name;
     private Timestamp lastUpdate;
     private short imageID;
-    private Set<UserObject> userObjects;
-    private Set<TaskObject> taskObjects;
+    private List<UserObject> userObjects;
+    private List<TaskObject> taskObjects;
 
     public GroupObject(int id, String name, Timestamp lastUpdate, short imageID) {
         this.id = id;
         this.name = name;
         this.lastUpdate = lastUpdate;
         this.imageID = imageID;
-        this.userObjects = new HashSet<UserObject>();
-        this.taskObjects = new HashSet<TaskObject>();
+        this.userObjects = new ArrayList<UserObject>();
+        this.taskObjects = new ArrayList<TaskObject>();
     }
 
     public int getId() {
@@ -74,5 +77,14 @@ public class GroupObject implements Serializable {
                 ", users=" + userObjects +
                 ", tasks=" + taskObjects +
                 '}';
+    }
+
+    public int countPendingTasks() {
+        int count = 0;
+        for (TaskObject task : taskObjects)
+            if (task.getStatus() == TaskObject.STATUS_PENDING)
+                count++;
+
+        return count;
     }
 }
