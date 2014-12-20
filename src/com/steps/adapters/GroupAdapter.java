@@ -31,9 +31,15 @@ public class GroupAdapter extends ArrayAdapter<GroupObject> {
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.group, parent, false);
         }
+
+//        if(group.hasOpenTasks()){
+//            convertView.setBackgroundColor(R.color.groupHasNotifications);
+//        }
+
         // Lookup view for data population
         ImageView tvName = (ImageView) convertView.findViewById(R.id.GroupImageSmall);
         TextView tvHome = (TextView) convertView.findViewById(R.id.GroupNameSmall);
+
         // Populate the data into the template view using the data object
         tvName.setImageDrawable(parent.getResources().getDrawable(R.drawable.ic_launcher));
         tvHome.setText(group.getName());

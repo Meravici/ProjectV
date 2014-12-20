@@ -42,20 +42,23 @@ public class ProjectV extends Activity {
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
         for(short i=0; i<100; i++) {
-            arrayOfGroups.add(new GroupObject(1, "name", new Timestamp(1l), i)); //TODO
+            arrayOfGroups.add(new GroupObject(1, "სახელი", new Timestamp(1l), i)); //TODO
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
-                linearLayout.
-            }
-        });
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
+//                LinearLayout groupRow = (LinearLayout)linearLayout.getChildAt(position);
+//                groupRow.setBackgroundResource(R.
+//
+//                        Android.android:background="?android:attr/activatedBackgroundIndicator");
+//            }
+//        });
 
     }
 }
