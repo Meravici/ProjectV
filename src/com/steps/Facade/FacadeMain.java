@@ -1,8 +1,7 @@
 package com.steps.Facade;
 
 import com.steps.Exceptions.ServerErrorException;
-import com.steps.Objects.GroupObject;
-import com.steps.Objects.UserObject;
+import com.steps.Objects.*;
 
 /**
  * Created by Rati on 20/12/14.
@@ -35,6 +34,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
 import java.net.URL;
+import java.security.acl.Group;
 import java.util.List;
 import java.util.Timer;
 
@@ -86,24 +86,35 @@ public class FacadeMain implements FacadeAPI {
             try {
                 mediator.insertGroup(params[0]);
             }catch (Exception e){
-                somethingWentWrong();
+
             }
             return null;
-        }
-        protected void somethingWentWrong(){
-
         }
         protected void onPostExecute(Long result){
 
         }
     }
-    private class add_to_group_async extends AsyncTask<String,Integer, Void> {
+    private class add_to_group_async extends AsyncTask<Object,Integer, Void> {
         @Override
-        protected Void doInBackground(String ... params) {
+        protected Void doInBackground(Object ... params) {
             try {
-
+                mediator.addUserToGroup((GroupObject) params[0],(UserObject) params[1]);
             } catch (Exception e) {
-                e.printStackTrace();
+
+            }
+            return null;
+        }
+        protected void onPostExecute(Long result){
+
+        }
+    }
+    private class insert_task_async extends AsyncTask<TaskObject,Integer, Void>{
+        @Override
+        protected  Void doInBackground(TaskObject ... params){
+            try{
+                mediator.insertTask(params[0]);
+            }catch (Exception e){
+
             }
             return null;
         }
@@ -122,6 +133,12 @@ public class FacadeMain implements FacadeAPI {
     }
     
     public void addToGroup(GroupObject group, UserObject me){
+        add_to_group_async tmp = new add_to_group_async();
+        tmp.execute(group,me);
+    }
 
+    public void insertTask(TaskObject tsk){
+        insert_task_async tmp = new insert_task_async();
+        tmp.execute(tsk);
     }
 }

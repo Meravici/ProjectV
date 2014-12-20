@@ -15,7 +15,6 @@ public interface FacadeAPI {
      */
     public UserObject loginUser(String id) throws ServerErrorException; //not connected to internet exception;
 
-
     /*
      * Registers new group
      */
