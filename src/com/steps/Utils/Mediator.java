@@ -28,7 +28,7 @@ public class Mediator implements MediatorAPI {
         sendData(jsonUser);
     }
 
-    public UserObject getUser(int googleID) {
+    public UserObject getUser(String googleID) {
         return null;
     }
 

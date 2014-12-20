@@ -12,7 +12,7 @@ public interface MediatorAPI {
 
     public void insertUser(UserObject userObject) throws ServerErrorException;
 
-    public UserObject getUser(int googleID);
+    public UserObject getUser(String googleID);
 
     public void insertGroup(GroupObject groupObject) throws ServerErrorException;
 
