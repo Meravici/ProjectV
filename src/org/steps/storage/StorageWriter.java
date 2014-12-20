@@ -30,11 +30,26 @@ public class StorageWriter {
 
     public void createNewGroup(int groupID, String groupData) {
         updateGroup(groupID,groupData);
+        SharedPreferences settings = activity.getSharedPreferences("groupArr", 0);
+        String oldString = settings.getString("groupArr", "");
+        oldString += groupID+",";
+        settings.edit().putString("groupArr", oldString);
+        settings.edit().commit();
     }
 
     public void addUserToGroup(int groupID, String groupData){
         updateGroup(groupID,groupData);
-
+        SharedPreferences settings = activity.getSharedPreferences("groupArr", 0);
+        String oldString = settings.getString("groupArr", "");
+        String[] arr = oldString.split(",");
+        for(int i=0;i<arr.length;i++){
+            if(arr[i].length()>0)
+                if (Integer.parseInt(arr[i]) == groupID)
+                    return;
+        }
+        oldString += groupID+",";
+        settings.edit().putString("groupArr", oldString);
+        settings.edit().commit();
     }
     public void removeUserFromGroup(int groupID, String groupData){
         updateGroup(groupID,groupData);

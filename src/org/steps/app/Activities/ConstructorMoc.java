@@ -14,7 +14,9 @@ import org.steps.storage.MyStorageListener;
 import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
+import org.steps.utils.Globals;
 import org.steps.utils.ServerErrorException;
+import org.steps.utils.startGCM;
 
 import java.lang.reflect.Array;
 import java.sql.Date;
@@ -48,6 +50,7 @@ public class ConstructorMoc implements ConstructorAPI {
         this.storageListener = new MyStorageListener(activity.getApplicationContext());
         this.activity = activity;
 
+        startGCM gcm=new startGCM(activity,storageWriter,activity.getApplicationContext());
 
         this.loadingDialog = new ProgressDialog(activity);
         loadingDialog.setTitle("იტვირთება");
@@ -88,10 +91,17 @@ public class ConstructorMoc implements ConstructorAPI {
 
     public void getGroupsCallback(ArrayList<Group> groups){
         ListView listView = (ListView) activity.findViewById(R.id.GroupListView);
+
+        for(int i=0; i<10; i++){
+            groups.add(new Group(1,"gio",null, 1));
+        }
+
+
         GroupAdapter adapter = new GroupAdapter(activity, groups);
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
         stopSpinner();
+        Globals.GROUPS = groups;
     }
 
     public void login(String s){

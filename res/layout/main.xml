@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ListView android:id="@+id/GroupListView" xmlns:android="http://schemas.android.com/apk/res/android"
-          android:layout_width="fill_parent"
-          android:layout_height="fill_parent" android:clickable="true">
-</ListView>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                        android:layout_width="fill_parent"
+                        android:layout_height="fill_parent" >
+    <ListView android:id="@+id/GroupListView" android:layout_width="fill_parent"
+              android:layout_height="fill_parent" android:clickable="true">
 
+    </ListView>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:id="@+id/first_view" android:layout_alignParentBottom="true" android:layout_centerHorizontal="true"
+        android:layout_alignParentEnd="true" android:height="250dp" android:background="@color/background"></TextView>
+    <!--android:visibility="gone"/>-->
+</RelativeLayout>
