@@ -27,5 +27,7 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="library" name="gcm" level="project" />
+    <orderEntry type="library" name="gcm-server" level="project" />
   </component>
 </module>

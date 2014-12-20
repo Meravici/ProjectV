@@ -1,33 +1,29 @@
 package com.steps.ProjectV;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.*;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.Gravity;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.*;
 import android.widget.AbsListView.LayoutParams;
+import android.widget.ListView;
+import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import com.steps.Facade.FacadeAPI;
-import com.steps.Facade.FacadeMain;
 import com.steps.Facade.FacadeMock;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.UserObject;
-import com.steps.Utils.Globals;
-import com.steps.Utils.Mediator;
 import com.steps.adapters.GroupAdapter;
-
-import java.sql.Timestamp;
 import java.util.ArrayList;
 
 public class ProjectV extends Activity {
     /**
      * Called when the activity is first created.
      */
-    private ArrayList<GroupObject> arrayOfGroups;
+
     private FacadeAPI facade;
     private ListView listView;
+    private ArrayList<GroupObject> arrayOfGroups;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -36,8 +32,8 @@ public class ProjectV extends Activity {
 
 
 
-
         this.facade = new FacadeMock(this);
+
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
@@ -54,29 +50,31 @@ public class ProjectV extends Activity {
         short a = 1;
 //        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
 
+
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);
-        final Context local = this;
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                System.out.println("clicked bitch");
-                Globals.GROUP = arrayOfGroups.get(position);
-                Intent groupActivity;
-                groupActivity = new Intent(local, GroupActivity.class);
-                local.startActivity(groupActivity);
-                overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
-            }
-        });
+
+//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
+//                LinearLayout groupRow = (LinearLayout)linearLayout.getChildAt(position);
+//                groupRow.setBackgroundResource(R.
+//
+//                        Android.android:background="?android:attr/activatedBackgroundIndicator");
+//            }
+//        });
 
     }
 
     public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
         // Construct the data source
+
         arrayOfGroups= new ArrayList<GroupObject>();
         for(int i=0; i<groups.size(); i++) {
             arrayOfGroups.add(groups.get(i)); //TODO
+
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);

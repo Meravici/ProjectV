@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/ProjectV.iml" filepath="$PROJECT_DIR$/ProjectV.iml" />
+      <module fileurl="file://D:/Android/android-sdk-windows/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" filepath="D:/Android/android-sdk-windows/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" />
     </modules>
   </component>
 </project>
