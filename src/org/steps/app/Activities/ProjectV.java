@@ -3,14 +3,19 @@ package org.steps.app.Activities;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
+import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import org.steps.app.objects.Group;
+import org.steps.utils.Globals;
 
 import java.util.ArrayList;
 
@@ -19,7 +24,7 @@ public class ProjectV extends Activity {
      * Called when the activity is first created.
      */
 
-    private Constructor constructor;
+    private ConstructorAPI constructor;
     private ListView listView;
     private ArrayList<Group> arrayOfGroups;
 
@@ -30,8 +35,8 @@ public class ProjectV extends Activity {
 
 
 
-        this.constructor = new Constructor(this);
-
+//        this.constructor = new Constructor(this);
+        this.constructor = new ConstructorMoc(this);
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
@@ -40,23 +45,23 @@ public class ProjectV extends Activity {
         listView.setEmptyView(progressBar);
 
         constructor.login("000000000000000000000");
+        constructor.getGroups();
 
 
 
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);
-
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
-//                LinearLayout groupRow = (LinearLayout)linearLayout.getChildAt(position);
-//                groupRow.setBackgroundResource(R.
-//
-//                        Android.android:background="?android:attr/activatedBackgroundIndicator");
-//            }
-//        });
+        final Activity local = this;
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent GroupActivity = new Intent(local, GroupActivity.class);
+                Globals.GROUP = Globals.GROUPS.get(position);
+                startActivity(GroupActivity);
+                overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
+            }
+        });
 
     }
 
@@ -75,7 +80,7 @@ public class ProjectV extends Activity {
         alert.show();
     }
 
-    public Constructor getConstructor(){
+    public ConstructorAPI getConstructor(){
         return this.constructor;
     }
 }

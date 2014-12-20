@@ -33,12 +33,12 @@ public class Constructor implements ConstructorAPI {
     private ProgressDialog loadingDialog;
 
     public Constructor(ProjectV activity){
-        telephoneNumber = getTelephoneNumber(activity.getApplicationContext());
-        this.mediator = new Mediator(storageReader, storageWriter);
-        this.storageReader = new StorageReader(storageListener, activity);
-        this.storageWriter = new StorageWriter(storageListener, activity);
         this.storageListener = new MyStorageListener(activity.getApplicationContext());
         this.activity = activity;
+        telephoneNumber = getTelephoneNumber(activity.getApplicationContext());
+        this.storageReader = new StorageReader(storageListener, activity);
+        this.storageWriter = new StorageWriter(storageListener, activity);
+        this.mediator = new Mediator(storageReader, storageWriter);
 
 
         this.loadingDialog = new ProgressDialog(activity);

@@ -8,6 +8,7 @@ import java.io.Serializable;
 public class User implements Serializable {
     private String googleID;
     private String phoneNumber;
+    private String registrationID;
 
     public User(String googleID, String phoneNumber) {
         this.googleID = googleID;
@@ -20,6 +21,15 @@ public class User implements Serializable {
 
     public void setGoogleID(String googleID) {
         this.googleID = googleID;
+    }
+
+
+    public String getRegistrationID() {
+        return registrationID;
+    }
+
+    public void setRegistrationID(String registrationID) {
+        this.registrationID = registrationID;
     }
 
     public String getPhoneNumber() {

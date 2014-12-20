@@ -16,6 +16,8 @@ public class Group implements Serializable {
     private ArrayList<Task> tasks;
 
     public Group(int id, String name, Timestamp lastUpdate, int imageID) {
+        this.users = new ArrayList<User>();
+        this.tasks = new ArrayList<Task>();
         this.id = id;
         this.name = name;
         this.lastUpdate = lastUpdate;

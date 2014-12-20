@@ -1,23 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent">
-
-
-    <TableRow
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="fill_parent"
+             android:layout_height="fill_parent">
+    <LinearLayout
+            android:orientation="vertical"
             android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        <TableLayout>
-            <TableRow>
-                <ImageView android:id="@+id/GroupImageLarge"/>
-                <TextView android:id="@+id/GroupNameLarge"/>
-            </TableRow>
-        </TableLayout>
-    </TableRow>
-    <TableRow
-            android:layout_width="fill_parent"
-            android:layout_height="fill_parent">
-        <ListView android:id="@+id/GroupTasks" android:layout_width="fill_parent" android:layout_height="fill_parent">
-        </ListView>
-    </TableRow>
-</TableLayout>
+            android:layout_height="fill_parent" android:layout_alignParentTop="true"
+            android:layout_alignParentStart="true" android:weightSum="1">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" android:layout_gravity="center_horizontal"
+                android:weightSum="0.10" android:background="@color/background" android:layout_weight="0.29">
+            <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imageView2" android:src="@drawable/ic_launcher"
+                    android:layout_margin="20dp"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="ჩემი ჯგუფი"
+                    android:id="@+id/textView"
+                    android:layout_margin="20dp" android:focusableInTouchMode="false" android:singleLine="false"
+                    android:textColor="@color/white" android:textSize="20sp"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>

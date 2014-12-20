@@ -14,6 +14,7 @@ import org.steps.storage.MyStorageListener;
 import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
+import org.steps.utils.Globals;
 import org.steps.utils.ServerErrorException;
 
 import java.lang.reflect.Array;
@@ -92,6 +93,7 @@ public class ConstructorMoc implements ConstructorAPI {
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
         stopSpinner();
+        Globals.GROUPS = groups;
     }
 
     public void login(String s){

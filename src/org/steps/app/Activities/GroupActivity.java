@@ -20,18 +20,18 @@ public class GroupActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.group_view);
-        Group group = Globals.GROUP;
-        //Image
-        ImageView image = (ImageView) findViewById(R.id.GroupImageLarge);
-//        image.setImageDrawable();
-        //Name
-        TextView name = (TextView) findViewById(R.id.GroupNameLarge);
-        name.setText(group.getName());
-        //tasks
-        ListView listView = (ListView) findViewById(R.id.GroupTasks);
-        System.out.println("bla: " + group.getTasks());
-        TaskAdapter adapter = new TaskAdapter(this, group.getTasks());
-
-        listView.setAdapter(adapter);
+//        Group group = Globals.GROUP;
+//        //Image
+//        ImageView image = (ImageView) findViewById(R.id.GroupImageLarge);
+//        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
+//        //Name
+//        TextView name = (TextView) findViewById(R.id.GroupNameLarge);
+//        name.setText(group.getName());
+//        //tasks
+//        ListView listView = (ListView) findViewById(R.id.GroupTasks);
+//        System.out.println("bla: " + group.getTasks());
+//        TaskAdapter adapter = new TaskAdapter(this, group.getTasks());
+//
+//        listView.setAdapter(adapter);
     }
 }
