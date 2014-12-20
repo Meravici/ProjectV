@@ -17,9 +17,9 @@ public class StorageWriter {
         this.activity = activity;
     }
 
-    public void login(int googleID, String userData) {
-        SharedPreferences settings = activity.getSharedPreferences("user" + Integer.toString(googleID), 0);
-        settings.edit().putString("user" + Integer.toString(googleID), userData);
+    public void login(String googleID, String userData) {
+        SharedPreferences settings = activity.getSharedPreferences("user" + googleID, 0);
+        settings.edit().putString("user" + googleID, userData);
         settings.edit().commit();
 
         activity.runOnUiThread(new Runnable() {

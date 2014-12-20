@@ -10,7 +10,7 @@ import java.security.Timestamp;
 public interface MediatorAPI {
     public void login(String googleID, String phoneNumber) throws ServerErrorException;//Register too
     public void createNewGroup(String name, int imageID) throws ServerErrorException;//afterwards call addUserToGroup add timestamps //TODO
-    public void addUserToGroup(String userID, int groupID) throws ServerErrorException;
+    public void addUserToGroup(String phoneNumber, int groupID) throws ServerErrorException;
     public void leaveGroup(int groupID, String myID) throws ServerErrorException;
     public void addTaskToGroup(String title, Timestamp dueDate) throws ServerErrorException;
     public void takeTaskInGroup() throws ServerErrorException;

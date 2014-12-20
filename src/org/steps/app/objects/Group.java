@@ -11,11 +11,11 @@ public class Group implements Serializable {
     private int id;
     private String name;
     private Timestamp lastUpdate;
-    private short imageID;
+    private int imageID;
     private ArrayList<User> users;
     private ArrayList<Task> tasks;
 
-    public Group(int id, String name, Timestamp lastUpdate, short imageID) {
+    public Group(int id, String name, Timestamp lastUpdate, int imageID) {
         this.id = id;
         this.name = name;
         this.lastUpdate = lastUpdate;
@@ -46,11 +46,11 @@ public class Group implements Serializable {
         this.lastUpdate = lastUpdate;
     }
 
-    public short getImageID() {
+    public int getImageID() {
         return imageID;
     }
 
-    public void setImageID(short imageID) {
+    public void setImageID(int imageID) {
         this.imageID = imageID;
     }
 

@@ -3,6 +3,8 @@ package org.steps.mediator;
 import com.google.gson.Gson;
 import org.steps.app.objects.Group;
 import org.steps.app.objects.User;
+import org.steps.storage.StorageReader;
+import org.steps.storage.StorageWriter;
 import org.steps.utils.ServerErrorException;
 
 import java.io.BufferedReader;
@@ -12,6 +14,7 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.security.Timestamp;
 import java.util.Calendar;
 
 /**
@@ -21,8 +24,11 @@ public class Mediator implements MediatorAPI {
     private static final String SERVER = "http://192.168.84.157/:8888";
 
     private Gson gson;
+    private StorageWriter storageWriter;
+    private StorageReader storageReader;
 
-    public Mediator() {
+    public Mediator(StorageReader storageReader, StorageWriter storageWriter) {
+        this.storageWriter = storageWriter;
         this.gson = new Gson();
     }
 
@@ -30,8 +36,9 @@ public class Mediator implements MediatorAPI {
     public void login(String googleID, String phoneNumber) throws ServerErrorException {
         User user = new User(googleID, phoneNumber);
         String userData = gson.toJson(user);
-        sendData(userData);
+        sendData("/android/user/add/" + userData);
 
+        storageWriter.login(googleID, userData);
     }
 
     @Override
@@ -42,9 +49,42 @@ public class Mediator implements MediatorAPI {
 
         Group group = new Group(0, name, currentTimestamp, imageID);
         String groupData = gson.toJson(group);
-        String response = sendData(groupData);
+        String response = sendData("/android/group/add/" + groupData);
         group.setId(Integer.parseInt(response));
 
+        storageWriter.createNewGroup(group.getId(), gson.toJson(group));
+    }
+
+    @Override
+    public void addUserToGroup(String phoneNumber, int groupID) throws ServerErrorException {
+        Group group = gson.fromJson(storageReader.getGroupData(groupID), Group.class);
+        User user = gson.fromJson(sendData("android/user/getifexists/" + phoneNumber), User.class);
+
+        group.addUser(user);
+
+        sendData("/android/group/user/" + group.getId() + "/" + user.getGoogleID());
+
+        storageWriter.addUserToGroup(groupID, gson.toJson(group));
+    }
+
+    @Override
+    public void leaveGroup(int groupID, String myID) throws ServerErrorException {
+
+    }
+
+    @Override
+    public void addTaskToGroup(String title, Timestamp dueDate) throws ServerErrorException {
+//        insertTask();
+//        addTask();
+    }
+
+    @Override
+    public void takeTaskInGroup() throws ServerErrorException {
+
+    }
+
+    @Override
+    public void finishTaskInGroup() throws ServerErrorException {
 
     }
 
@@ -75,4 +115,3 @@ public class Mediator implements MediatorAPI {
         return null;
     }
 }
-
