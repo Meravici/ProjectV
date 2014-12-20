@@ -1,16 +1,18 @@
 package com.steps.Facade;
 
-import android.os.AsyncTask;
 import com.steps.Exceptions.ServerErrorException;
-import com.steps.Objects.GroupObject;
-import com.steps.Objects.TaskObject;
-import com.steps.Objects.UserObject;
-import com.steps.ProjectV.ProjectV;
-import com.steps.Utils.MediatorAPI;
+import com.steps.Objects.*;
 
 /**
  * Created by Rati on 20/12/14.
  */
+
+import android.os.AsyncTask;
+import com.steps.Objects.GroupObject;
+import com.steps.Objects.UserObject;
+import com.steps.ProjectV.ProjectV;
+import com.steps.Utils.MediatorAPI;
+import java.util.ArrayList;
 
 public class FacadeMain implements FacadeAPI {
 
@@ -23,7 +25,7 @@ public class FacadeMain implements FacadeAPI {
     }
 
     private class login_user_async extends AsyncTask<String,Integer, Void> {
-        GroupObject[] grps;
+        ArrayList<GroupObject> grps;
         UserObject usr;
         @Override
         protected Void doInBackground(String ... params) {
@@ -44,7 +46,7 @@ public class FacadeMain implements FacadeAPI {
         }
         protected void onPostExecute(Long result){
             final UserObject users = this.usr;
-            final GroupObject[] groups = this.grps;
+            final ArrayList<GroupObject> groups = this.grps;
             myActivity.runOnUiThread(new Runnable() {
                 @Override
                 public void run() {
@@ -72,7 +74,7 @@ public class FacadeMain implements FacadeAPI {
         @Override
         protected Void doInBackground(Object ... params) {
             try {
-                //mediator.addUserToGroup((GroupObject) params[0],(UserObject) params[1]);
+                mediator.addUserToGroup((GroupObject) params[0],(UserObject) params[1]);
             } catch (Exception e) {
 
             }

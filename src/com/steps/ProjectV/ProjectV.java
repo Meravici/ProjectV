@@ -10,12 +10,10 @@ import android.widget.ListView;
 import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import com.steps.Facade.FacadeAPI;
-import com.steps.Facade.FacadeMain;
+import com.steps.Facade.FacadeMock;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.UserObject;
-import com.steps.Utils.Mediator;
 import com.steps.adapters.GroupAdapter;
-
 import java.util.ArrayList;
 
 public class ProjectV extends Activity {
@@ -25,6 +23,7 @@ public class ProjectV extends Activity {
 
     private FacadeAPI facade;
     private ListView listView;
+    private ArrayList<GroupObject> arrayOfGroups;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,21 +31,25 @@ public class ProjectV extends Activity {
         this.setContentView(R.layout.main);
 
 
-        this.facade = new FacadeMain(new Mediator(), this);
+
+        this.facade = new FacadeMock(this);
+
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
         progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
-//
+
         try{
             facade.loginUser("000000000000000000000");
 
         }catch(Exception e){
             System.out.println("error");
         }
-//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(null), 1)});
+        short a = 1;
+//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
+
 
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
@@ -65,11 +68,13 @@ public class ProjectV extends Activity {
 
     }
 
-    public void successCallback(UserObject loggedInUser, GroupObject[] groups){
+    public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
         // Construct the data source
-        ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
-        for(int i=0; i<100; i++) {
-            arrayOfGroups.add(groups[i]); //TODO
+
+        arrayOfGroups= new ArrayList<GroupObject>();
+        for(int i=0; i<groups.size(); i++) {
+            arrayOfGroups.add(groups.get(i)); //TODO
+
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);

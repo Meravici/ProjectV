@@ -5,6 +5,7 @@ import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 import com.steps.Objects.UserObject;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -28,5 +29,7 @@ public interface MediatorAPI {
 
     public void addTask(GroupObject groupObject, TaskObject taskObject) throws ServerErrorException;
 
-    public GroupObject[] getGroups(UserObject usr) throws ServerErrorException;
+    public ArrayList<GroupObject> getGroups(UserObject usr) throws ServerErrorException;
+
+    void addUserToGroup(GroupObject param, UserObject param1);
 }
