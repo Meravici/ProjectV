@@ -91,6 +91,12 @@ public class ConstructorMoc implements ConstructorAPI {
 
     public void getGroupsCallback(ArrayList<Group> groups){
         ListView listView = (ListView) activity.findViewById(R.id.GroupListView);
+
+        for(int i=0; i<10; i++){
+            groups.add(new Group(1,"gio",null, 1));
+        }
+
+
         GroupAdapter adapter = new GroupAdapter(activity, groups);
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
