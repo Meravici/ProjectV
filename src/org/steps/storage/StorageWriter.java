@@ -1,9 +1,7 @@
 package org.steps.storage;
 
 import android.app.Activity;
-import android.content.Context;
 import android.content.SharedPreferences;
-import org.steps.app.objects.Task;
 
 /**
  * Created by Xato on 12/20/2014.
