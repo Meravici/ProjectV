@@ -122,6 +122,7 @@ public class FacadeMain implements FacadeAPI {
     }
     
     public void addToGroup(GroupObject group, UserObject me){
-
+        group.addUser(me);
+        mediator.insertGroup();
     }
 }

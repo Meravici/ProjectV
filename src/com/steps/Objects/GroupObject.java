@@ -64,10 +64,20 @@ public class GroupObject implements Serializable {
 
     public void addUser(UserObject userObject) {
         this.userObjects.add(userObject);
+        // TODO sorted insert
+    }
+
+    public List<UserObject> getUserObjects() {
+        return userObjects;
     }
 
     public void addTask(TaskObject taskObject) {
         this.taskObjects.add(taskObject);
+        // TODO serted insert
+    }
+
+    public List<TaskObject> getTaskObjects() {
+        return taskObjects;
     }
 
     @Override
