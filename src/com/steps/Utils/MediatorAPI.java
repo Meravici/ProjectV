@@ -30,4 +30,6 @@ public interface MediatorAPI {
     public void addTask(GroupObject groupObject, TaskObject taskObject) throws ServerErrorException;
 
     public ArrayList<GroupObject> getGroups(UserObject usr) throws ServerErrorException;
+
+    void addUserToGroup(GroupObject param, UserObject param1);
 }
