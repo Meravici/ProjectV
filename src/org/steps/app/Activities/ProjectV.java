@@ -7,16 +7,13 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.AbsListView.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import org.steps.app.objects.Group;
 import org.steps.utils.Globals;
-import org.steps.utils.startGCM;
 
 import java.util.ArrayList;
 
@@ -39,11 +36,11 @@ public class ProjectV extends Activity {
         listView = (ListView) findViewById(R.id.GroupListView);
         listView.setEmptyView(findViewById(R.id.first_view));
         // Create a progress bar to display while the list loads
-//        ProgressBar progressBar = new ProgressBar(this);
-//        Globals.PROGRESSBAR = progressBar;
-//        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
-//        progressBar.setIndeterminate(true);
-//        listView.setEmptyView(progressBar);
+        ProgressBar progressBar = new ProgressBar(this);
+        Globals.PROGRESSBAR = progressBar;
+        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
+        progressBar.setIndeterminate(true);
+        listView.setEmptyView(progressBar);
         //listView.setEmptyView(findViewById(R.id.first_view));
         constructor.login("000000000000000000000");
         constructor.getGroups();
