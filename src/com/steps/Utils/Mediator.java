@@ -25,7 +25,7 @@ public class Mediator implements MediatorAPI {
 
     public void insertUser(UserObject userObject) throws ServerErrorException {
         String jsonUser = gson.toJson(userObject);
-        sendData("/android/user/set" + jsonUser);
+        sendData("/android/user/add" + jsonUser);
     }
 
     public UserObject getUser(String googleID) throws ServerErrorException {
@@ -36,7 +36,7 @@ public class Mediator implements MediatorAPI {
 
     public void insertGroup(GroupObject groupObject) throws ServerErrorException {
         String jsonGroup = gson.toJson(groupObject);
-        sendData("/android/group/set" + jsonGroup);
+        sendData("/android/group/add" + jsonGroup);
     }
 
     public GroupObject getGroup(int groupID) throws ServerErrorException {
@@ -47,7 +47,7 @@ public class Mediator implements MediatorAPI {
 
     public void insertTask(TaskObject taskObject) throws ServerErrorException {
         String jsonTask = gson.toJson(taskObject);
-        sendData("android/task/set" + jsonTask);
+        sendData("android/task/add" + jsonTask);
     }
 
 
