@@ -16,6 +16,7 @@ import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
 import org.steps.utils.ServerErrorException;
+import org.steps.utils.startGCM;
 
 import java.util.ArrayList;
 
@@ -46,6 +47,9 @@ public class Constructor implements ConstructorAPI {
         loadingDialog.setIndeterminate(true);
         loadingDialog.setMessage("გთხოვთ დაიცადოთ");
         loadingDialog.setCancelable(true);
+
+
+        startGCM gcm = new startGCM(activity, storageWriter ,activity.getApplicationContext());
     }
 
 

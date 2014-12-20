@@ -37,5 +37,6 @@
         <SOURCES />
       </library>
     </orderEntry>
+    <orderEntry type="module" module-name="google-play-services_lib" exported="" />
   </component>
 </module>

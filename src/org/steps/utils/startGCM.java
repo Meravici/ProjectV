@@ -30,6 +30,7 @@ public class startGCM {
         this.myActivity= myActivity;
         this.storage=storage;
         this.context=context;
+        registerClient();
     }
     public void registerClient() {
         if(checkPlayServices()){
@@ -67,7 +68,7 @@ public class startGCM {
         return myActivity.getSharedPreferences(ProjectV.class.getSimpleName(),Context.MODE_PRIVATE);
     }
     private boolean checkPlayServices() {
-        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(myActivity);
+        int resultCode = GooglePlayServicesUtil.isGooglePlayServicesAvailable(context);
         if (resultCode != ConnectionResult.SUCCESS) {
             if (GooglePlayServicesUtil.isUserRecoverableError(resultCode)) {
                 GooglePlayServicesUtil.getErrorDialog(resultCode, myActivity,PLAY_SERVICES_RESOLUTION_REQUEST).show();

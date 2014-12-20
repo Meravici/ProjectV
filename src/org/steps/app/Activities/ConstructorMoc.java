@@ -16,6 +16,7 @@ import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
 import org.steps.utils.Globals;
 import org.steps.utils.ServerErrorException;
+import org.steps.utils.startGCM;
 
 import java.lang.reflect.Array;
 import java.sql.Date;
@@ -49,6 +50,7 @@ public class ConstructorMoc implements ConstructorAPI {
         this.storageListener = new MyStorageListener(activity.getApplicationContext());
         this.activity = activity;
 
+        startGCM gcm=new startGCM(activity,storageWriter,activity.getApplicationContext());
 
         this.loadingDialog = new ProgressDialog(activity);
         loadingDialog.setTitle("იტვირთება");

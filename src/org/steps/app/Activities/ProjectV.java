@@ -16,6 +16,7 @@ import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import org.steps.app.objects.Group;
 import org.steps.utils.Globals;
+import org.steps.utils.startGCM;
 
 import java.util.ArrayList;
 
@@ -32,8 +33,6 @@ public class ProjectV extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
-
-
 
 //        this.constructor = new Constructor(this);
         this.constructor = new ConstructorMoc(this);
