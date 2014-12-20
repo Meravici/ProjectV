@@ -24,6 +24,6 @@ public interface FacadeAPI {
     /*
      * Adds user to Group
      */
-    public void addToGroup(GroupObject group, UserObject user);
+    public void addToGroup(GroupObject group, UserObject user) throws ServerErrorException;
 }
 

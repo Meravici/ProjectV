@@ -1,14 +1,8 @@
 package com.steps.ProjectV;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.app.ListActivity;
-import android.app.LoaderManager;
-import android.content.CursorLoader;
-import android.content.DialogInterface;
-import android.content.Loader;
-import android.database.Cursor;
+import android.content.*;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +13,7 @@ import com.steps.Facade.FacadeAPI;
 import com.steps.Facade.FacadeMain;
 import com.steps.Objects.GroupObject;
 import com.steps.Objects.UserObject;
+import com.steps.Utils.Globals;
 import com.steps.Utils.Mediator;
 import com.steps.adapters.GroupAdapter;
 
@@ -29,7 +24,7 @@ public class ProjectV extends Activity {
     /**
      * Called when the activity is first created.
      */
-
+    private ArrayList<GroupObject> arrayOfGroups;
     private FacadeAPI facade;
     private ListView listView;
 
@@ -61,11 +56,16 @@ public class ProjectV extends Activity {
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);
-
+        final Context local = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
+                System.out.println("clicked bitch");
+                Globals.GROUP = arrayOfGroups.get(position);
+                Intent groupActivity;
+                groupActivity = new Intent(local, GroupActivity.class);
+                local.startActivity(groupActivity);
+                overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
 
@@ -73,7 +73,7 @@ public class ProjectV extends Activity {
 
     public void successCallback(UserObject loggedInUser, GroupObject[] groups){
         // Construct the data source
-        ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
+        arrayOfGroups= new ArrayList<GroupObject>();
         for(int i=0; i<groups.length; i++) {
             arrayOfGroups.add(groups[i]); //TODO
         }

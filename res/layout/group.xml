@@ -8,7 +8,7 @@
               android:paddingStart="?android:attr/listPreferredItemPaddingStart"
               android:paddingEnd="?android:attr/listPreferredItemPaddingEnd"
               android:minHeight="?android:attr/listPreferredItemHeightSmall"
-              android:clickable="true"
+              android:descendantFocusability="blocksDescendants"
               android:alignmentMode="alignMargins"
               android:orientation="horizontal"
               android:baselineAligned="true" android:padding="10dp">
@@ -24,7 +24,8 @@
                 android:layout_marginRight="5dp"
                 />
         <TextView android:id="@+id/GroupNameSmall" android:layout_width="wrap_content" android:layout_height="wrap_content"
-                  android:layout_gravity="center_vertical"/>
+                  android:layout_centerVertical="true"
+                />
     </TableRow>
     <ImageView
             android:layout_width="wrap_content"

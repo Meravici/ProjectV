@@ -2,15 +2,12 @@ package com.steps.adapters;
 
 import android.content.Context;
 import android.graphics.drawable.Drawable;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.TextView;
 import com.example.ProjectV.R;
-import com.steps.Objects.GroupObject;
 import com.steps.Objects.TaskObject;
 
 import java.util.ArrayList;
@@ -37,13 +34,13 @@ public class TaskAdapter extends ArrayAdapter<TaskObject> {
         ImageView status = (ImageView) parent.findViewById(R.id.TaskStatus);
         Drawable statusDrawable = null;
         if(task.getStatus() == TaskObject.STATUS_PENDING){
-            statusDrawable = parent.getResources().getDrawable(R.drawable.TaskStatusPending);
+            statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_pending);
         }else if(task.getStatus() == TaskObject.STATUS_FINISHED) {
-            statusDrawable = parent.getResources().getDrawable(R.drawable.TaskStatusGreen);
+            statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_green);
         }else if(task.getStatus() == TaskObject.STATUS_FAILED){
-            statusDrawable = parent.getResources().getDrawable(R.drawable.TaskStatusRed);
+            statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_red);
         }else{
-            statusDrawable = parent.getResources().getDrawable(R.drawable.TaskStatusGrey);
+            statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_grey);
         }
         status.setImageDrawable(statusDrawable);
 

@@ -121,8 +121,8 @@ public class FacadeMain implements FacadeAPI {
         tmp.execute(group);
     }
     
-    public void addToGroup(GroupObject group, UserObject me){
+    public void addToGroup(GroupObject group, UserObject me)throws ServerErrorException{
         group.addUser(me);
-        mediator.insertGroup();
+        mediator.insertGroup(group);
     }
 }
