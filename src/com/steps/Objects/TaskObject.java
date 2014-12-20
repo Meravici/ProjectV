@@ -11,6 +11,7 @@ public class TaskObject implements Serializable {
     public static final int STATUS_PENDING = 0;
     public static final int STATUS_STARTED = 1;
     public static final int STATUS_FINISHED = 2;
+    public static final int STATUS_FAILED = 3;
 
     private int id;
     private String name;

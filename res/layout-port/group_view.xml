@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<TableLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent">
+
+
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TableLayout>
+            <TableRow>
+                <ImageView android:id="@+id/GroupImageLarge"/>
+                <TextView android:id="@+id/GroupNameLarge"/>
+            </TableRow>
+        </TableLayout>
+    </TableRow>
+    <TableRow
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <ListView android:id="@+id/GroupTasks" android:layout_width="fill_parent" android:layout_height="fill_parent">
+        </ListView>
+    </TableRow>
+</TableLayout>

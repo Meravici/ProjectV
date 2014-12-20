@@ -49,35 +49,32 @@ public class ProjectV extends Activity {
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
 //
-        try{
-            facade.loginUser("000000000000000000000");
-
-        }catch(Exception e){
-            System.out.println("error");
-        }
-//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(null), 1)});
+//        try{
+//            facade.loginUser("000000000000000000000");
+//
+//        }catch(Exception e){
+//            System.out.println("error");
+//        }
+        short a = 1;
+        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
 
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
         root.addView(progressBar);
 
-//        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                LinearLayout linearLayout = (LinearLayout)view.findViewById(R.id.GroupListViewItemLinearLayout);
-//                LinearLayout groupRow = (LinearLayout)linearLayout.getChildAt(position);
-//                groupRow.setBackgroundResource(R.
-//
-//                        Android.android:background="?android:attr/activatedBackgroundIndicator");
-//            }
-//        });
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+            }
+        });
 
     }
 
     public void successCallback(UserObject loggedInUser, GroupObject[] groups){
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
-        for(int i=0; i<100; i++) {
+        for(int i=0; i<groups.length; i++) {
             arrayOfGroups.add(groups[i]); //TODO
         }
         // Create the adapter to convert the array to views
