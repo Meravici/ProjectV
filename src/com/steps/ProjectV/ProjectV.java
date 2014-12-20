@@ -37,6 +37,10 @@ public class ProjectV extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
+
+
+
+
         this.facade = new FacadeMain(new Mediator(), this);
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
@@ -44,6 +48,14 @@ public class ProjectV extends Activity {
         progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
+//
+        try{
+            facade.loginUser("000000000000000000000");
+
+        }catch(Exception e){
+            System.out.println("error");
+        }
+//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(null), 1)});
 
         // Must add the progress bar to the root of the layout
         ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
@@ -66,12 +78,13 @@ public class ProjectV extends Activity {
         // Construct the data source
         ArrayList<GroupObject> arrayOfGroups= new ArrayList<GroupObject>();
         for(int i=0; i<100; i++) {
-            arrayOfGroups.add(groups.get(i)); //TODO
+            arrayOfGroups.add(groups[i]); //TODO
         }
         // Create the adapter to convert the array to views
         GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
         // Attach the adapter to a ListView
         listView.setAdapter(adapter);
+        System.out.println(loggedInUser.getGoogleID());
     }
 
     public void failureCallback(){

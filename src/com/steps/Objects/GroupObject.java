@@ -28,6 +28,8 @@ public class GroupObject implements Serializable {
         this.taskObjects = new ArrayList<TaskObject>();
     }
 
+
+
     public int getId() {
         return id;
     }

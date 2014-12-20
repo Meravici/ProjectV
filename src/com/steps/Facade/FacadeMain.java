@@ -55,13 +55,29 @@ public class FacadeMain implements FacadeAPI {
         protected Void doInBackground(String ... params) {
             try {
                 this.usr = mediator.getUser(params[0]);
-                this.grps = mediator.getGroups(this.usr);
+                System.out.println(this.usr.getGoogleID());
+              //  this.grps = mediator.getGroups(this.usr);
             } catch (ServerErrorException e) {
-                myActivity.failureCallback();
+                myActivity.runOnUiThread(new Runnable() {
+                    @Override
+                    public void run() {
+                        myActivity.failureCallback();
+                    }
+
+                });
             }
+                return null;
         }
         protected void onPostExecute(Long result){
-            myActivity.successCallback(this.usr, this.grps);
+            final UserObject users = this.usr;
+            final GroupObject[] groups = this.grps;
+            myActivity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    myActivity.successCallback(users, groups);
+                }
+            });
+
         }
     }
     private class register_group_async extends AsyncTask<GroupObject,Integer, Void> {
