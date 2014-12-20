@@ -87,7 +87,7 @@ public class Mediator implements MediatorAPI {
 
     @Override
     public void addUserToGroup(GroupObject param, UserObject param1) {
-        
+
     }
 
     private String sendData(String jsonString) throws ServerErrorException {
