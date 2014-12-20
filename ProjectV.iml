@@ -27,7 +27,6 @@
         <SOURCES />
       </library>
     </orderEntry>
-    <orderEntry type="library" name="gcm" level="project" />
-    <orderEntry type="library" name="gcm-server" level="project" />
+    <orderEntry type="library" name="google-play-services" level="project" />
   </component>
 </module>

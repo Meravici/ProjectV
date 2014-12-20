@@ -29,71 +29,30 @@ public class StorageWriter {
     }
 
     public void createNewGroup(int groupID, String groupData) {
-        SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
-        settings.edit().putString("group" + Integer.toString(groupID), groupData);
-        settings.edit().commit();
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listener.onGroupCreated();
-            }
-        });
+        updateGroup(groupID,groupData);
     }
 
     public void addUserToGroup(int groupID, String groupData){
-        SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
-        settings.edit().putString("group" + Integer.toString(groupID), groupData);
-        settings.edit().commit();
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listener.onUserAddedToGroup();
-            }
-        });
+        updateGroup(groupID,groupData);
 
     }
     public void removeUserFromGroup(int groupID, String groupData){
-        SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
-        settings.edit().putString("group" + Integer.toString(groupID), groupData);
-        settings.edit().commit();
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listener.onUserLeftGroup();
-            }
-        });
+        updateGroup(groupID,groupData);
     }
 
     public void AddTaskToGroup(int groupID, String groupData){
-        SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
-        settings.edit().putString("group" + Integer.toString(groupID), groupData);
-        settings.edit().commit();
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listener.onTaskAddedToGroup();
-            }
-        });
+        updateGroup(groupID,groupData);
     }
 
     public void setTaskStartStatus(int groupID, String groupData){
-        SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
-        settings.edit().putString("group" + Integer.toString(groupID), groupData);
-        settings.edit().commit();
-
-        activity.runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                listener.onTaskTakenInGroup();
-            }
-        });
+        updateGroup(groupID, groupData);
     }
 
     public void setTaskFinishedStatus(int groupID, String groupData){
+        updateGroup(groupID,groupData);
+    }
+
+    private void updateGroup(int groupID, String groupData){
         SharedPreferences settings = activity.getSharedPreferences("group" + Integer.toString(groupID), 0);
         settings.edit().putString("group" + Integer.toString(groupID), groupData);
         settings.edit().commit();
@@ -105,5 +64,4 @@ public class StorageWriter {
             }
         });
     }
-
 }

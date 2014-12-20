@@ -1,7 +1,6 @@
-package com.steps.adapters;
+package org.steps.adapters;
 
 import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,7 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.ProjectV.R;
-import com.steps.Objects.GroupObject;
+import org.steps.app.objects.Group;
 
 import java.util.ArrayList;
 
@@ -17,16 +16,16 @@ import java.util.ArrayList;
 /**
  * Created by Xato on 12/20/2014.
  */
-public class GroupAdapter extends ArrayAdapter<GroupObject> {
+public class GroupAdapter extends ArrayAdapter<Group> {
 
-    public GroupAdapter(Context context, ArrayList<GroupObject> users) {
+    public GroupAdapter(Context context, ArrayList<Group> users) {
         super(context, 0, users);
     }
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // Get the data item for this position
-        GroupObject group = getItem(position);
+        Group group = getItem(position);
         // Check if an existing view is being reused, otherwise inflate the view
         if (convertView == null) {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.group, parent, false);

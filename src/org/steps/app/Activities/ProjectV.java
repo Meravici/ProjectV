@@ -1,4 +1,5 @@
-package com.steps.ProjectV;
+package org.steps.app.Activities;
+
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -9,11 +10,8 @@ import android.widget.AbsListView.LayoutParams;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import com.example.ProjectV.R;
-import com.steps.Facade.FacadeAPI;
-import com.steps.Facade.FacadeMock;
-import com.steps.Objects.GroupObject;
-import com.steps.Objects.UserObject;
-import com.steps.adapters.GroupAdapter;
+import org.steps.app.objects.Group;
+
 import java.util.ArrayList;
 
 public class ProjectV extends Activity {
@@ -21,9 +19,9 @@ public class ProjectV extends Activity {
      * Called when the activity is first created.
      */
 
-    private FacadeAPI facade;
+    private Constructor constructor;
     private ListView listView;
-    private ArrayList<GroupObject> arrayOfGroups;
+    private ArrayList<Group> arrayOfGroups;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -32,7 +30,7 @@ public class ProjectV extends Activity {
 
 
 
-        this.facade = new FacadeMock(this);
+        this.constructor = new Constructor(this);
 
         listView = (ListView) findViewById(R.id.GroupListView);
         // Create a progress bar to display while the list loads
@@ -41,14 +39,8 @@ public class ProjectV extends Activity {
         progressBar.setIndeterminate(true);
         listView.setEmptyView(progressBar);
 
-        try{
-            facade.loginUser("000000000000000000000");
+        constructor.login("000000000000000000000");
 
-        }catch(Exception e){
-            System.out.println("error");
-        }
-        short a = 1;
-//        successCallback(new UserObject("000000", "Gio"), new GroupObject[]{new GroupObject(1, "სახელიი", new Timestamp(1l), a)});
 
 
         // Must add the progress bar to the root of the layout
@@ -68,35 +60,22 @@ public class ProjectV extends Activity {
 
     }
 
-    public void successCallback(UserObject loggedInUser, ArrayList<GroupObject> groups){
-        // Construct the data source
-
-        arrayOfGroups= new ArrayList<GroupObject>();
-        for(int i=0; i<groups.size(); i++) {
-            arrayOfGroups.add(groups.get(i)); //TODO
-
-        }
-        // Create the adapter to convert the array to views
-        GroupAdapter adapter = new GroupAdapter(this, arrayOfGroups);
-        // Attach the adapter to a ListView
-        listView.setAdapter(adapter);
-        System.out.println(loggedInUser.getGoogleID());
-    }
-
-    public void failureCallback(){
+    public void errorCallback(){
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setTitle("CLOSE");
-        builder.setMessage("Do You Want to Close the Application").setCancelable(false)
-                .setPositiveButton("Yes",
+        builder.setTitle("შეცდომა!");
+        builder.setMessage("დაფიქსირდა შეცდომა, გთხოვთ გადატვირთოთ აპლიკაცია").setCancelable(false)
+                .setPositiveButton("დიახ",
                         new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
                                 dialog.dismiss();
                                 finish();
                             }
-
-
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+
+    public Constructor getConstructor(){
+        return this.constructor;
     }
 }
