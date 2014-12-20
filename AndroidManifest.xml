@@ -24,5 +24,14 @@
             </intent-filter>
         </activity>
         <activity android:name="org.steps.app.Activities.GroupActivity" android:label="GroupActivity"/>
+        <receiver
+                android:name="org.steps.utils.GCMB"
+                android:permission="com.google.android.c2dm.permission.SEND" >
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.example.gcm" />
+            </intent-filter>
+        </receiver>
+        <service android:name="org.steps.utils.GCM" />
     </application>
 </manifest>
