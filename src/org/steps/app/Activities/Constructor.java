@@ -80,11 +80,18 @@ public class Constructor {
     }
 
     public void login(String s){
-        try {
-            mediator.login(s, telephoneNumber);
-        } catch (ServerErrorException e) {
-            activity.errorCallback();
-        }
+        final String name = s;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mediator.login(name, telephoneNumber);
+                } catch (ServerErrorException e) {
+                    activity.errorCallback();
+                }
+            }
+        }).start();
+
     }
 
 
