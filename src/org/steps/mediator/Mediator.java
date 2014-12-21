@@ -2,6 +2,14 @@ package org.steps.mediator;
 
 import android.app.Activity;
 import com.google.gson.Gson;
+import org.apache.http.HttpResponse;
+import org.apache.http.client.ClientProtocolException;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
+import org.apache.http.entity.StringEntity;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.steps.app.Activities.ProjectV;
 import org.steps.app.objects.Group;
 import org.steps.app.objects.Task;
 import org.steps.app.objects.User;
@@ -14,9 +22,7 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.URL;
+import java.net.*;
 import java.security.Timestamp;
 import java.sql.Date;
 import java.util.Calendar;
@@ -30,10 +36,10 @@ public class Mediator implements MediatorAPI {
     private Gson gson;
     private StorageWriter storageWriter;
     private StorageReader storageReader;
-    private Activity activity;
+    private ProjectV activity;
     private StorageListener listener;
 
-    public Mediator(StorageReader storageReader, StorageWriter storageWriter, Activity activity, StorageListener listener) {
+    public Mediator(StorageReader storageReader, StorageWriter storageWriter, ProjectV activity, StorageListener listener) {
         this.storageWriter = storageWriter;
         this.gson = new Gson();
         this.activity = activity;
@@ -58,12 +64,58 @@ public class Mediator implements MediatorAPI {
 
         Group group = new Group(0, name, currentTimestamp, imageID);
         String groupData = gson.toJson(group);
-        String response = sendData("/android/group/add/" + groupData);
+        String response = mySendData("/android/group/add/" + groupData);
         group.setId(Integer.parseInt(response));
 
         storageWriter.createNewGroup(group.getId(), gson.toJson(group));
 
 
+    }
+
+    private String mySendData(String jsonString) throws ServerErrorException {
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpPost request = new HttpPost();
+            URI website = new URI(SERVER);
+
+            request.setURI(website);
+            request.setEntity(new StringEntity(jsonString));
+            HttpResponse response = httpClient.execute(request);
+
+            if (response.getStatusLine().getStatusCode() == 200) {
+                BufferedReader r = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                StringBuilder total = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    total.append(line);
+                }
+                return total.toString();
+            }else{
+                throw new ServerErrorException();
+            }
+        } catch (ClientProtocolException e){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
+        } catch  (IOException e1){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
+        } catch (URISyntaxException e2) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
+        }
+        return null;
     }
 
     @Override
@@ -138,8 +190,8 @@ public class Mediator implements MediatorAPI {
     }
 
 
-    private String sendData(String jsonString) throws ServerErrorException {
-        try {
+    private String sendData(String jsonString) throws ServerErrorException{
+        /*try {
             HttpURLConnection cn = (HttpURLConnection) new URL(SERVER + jsonString).openConnection();
             cn.setRequestProperty("Accept-Encoding", "" );
             cn.connect();
@@ -155,6 +207,7 @@ public class Mediator implements MediatorAPI {
                 while ((line = r.readLine()) != null) {
                     total.append(line);
                 }
+                cn.disconnect();
                 return total.toString();
             }
             // TODO test 404
@@ -162,6 +215,47 @@ public class Mediator implements MediatorAPI {
             e.printStackTrace();
         } catch (IOException e) {
             e.printStackTrace();
+        }*/
+        try {
+            HttpClient httpClient = new DefaultHttpClient();
+            HttpGet request = new HttpGet();
+            URI website = new URI("" + SERVER + jsonString);
+
+            request.setURI(website);
+            HttpResponse response = httpClient.execute(request);
+
+            if (response.getStatusLine().getStatusCode() == 200) {
+                BufferedReader r = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+                StringBuilder total = new StringBuilder();
+                String line;
+                while ((line = r.readLine()) != null) {
+                    total.append(line);
+                }
+                return total.toString();
+            }else{
+                throw new ServerErrorException();
+            }
+        } catch (ClientProtocolException e){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
+        } catch  (IOException e1){
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
+        } catch (URISyntaxException e2) {
+            activity.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    activity.errorCallback();
+                }
+            });
         }
         return null;
     }

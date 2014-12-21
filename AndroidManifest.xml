@@ -23,7 +23,7 @@
 
         </activity>
         <activity android:name="org.steps.app.Activities.GroupActivity" android:label="GroupActivity"/>
-        <activity android:name="org.steps.app.Activities.GoogleLogin" android:label="დარეგისტრირდი">
+        <activity android:name="org.steps.app.Activities.GoogleLogin" android:label="ნაბიჯი">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>

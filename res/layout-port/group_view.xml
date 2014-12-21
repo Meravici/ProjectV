@@ -19,11 +19,16 @@
                     android:layout_margin="20dp"/>
             <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="50dp"
                     android:text="ჩემი ჯგუფი"
                     android:id="@+id/textView"
                     android:layout_margin="20dp" android:focusableInTouchMode="false" android:singleLine="false"
-                    android:textColor="@color/white" android:textSize="20sp"/>
+                    android:textColor="@color/white" android:textSize="20sp" android:layout_weight="0.01"
+                    android:hint="20dp"/>
         </LinearLayout>
+        <ListView
+                android:layout_width="match_parent"
+                android:layout_height="318dp"
+                android:id="@+id/GroupListView" android:layout_weight="0.78"/>
     </LinearLayout>
 </RelativeLayout>

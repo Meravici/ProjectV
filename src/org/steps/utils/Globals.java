@@ -1,8 +1,10 @@
 package org.steps.utils;
 
 import android.media.Image;
+import android.widget.ListView;
 import android.widget.ProgressBar;
 import com.google.android.gms.plus.model.people.Person;
+import org.steps.app.Activities.ProjectV;
 import org.steps.app.objects.Group;
 
 import java.util.ArrayList;
@@ -17,4 +19,6 @@ public class Globals {
     public static ArrayList<Group> GROUPS;
     public static String USER_REG_ID;
     public static Person.Image IMAGE;
+    public static ListView GROUPLIST;
+    public static ProjectV MAIN_ACTIVITY;
 }

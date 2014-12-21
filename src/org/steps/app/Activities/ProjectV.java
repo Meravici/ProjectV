@@ -27,8 +27,8 @@ public class ProjectV extends Activity{
         super.onCreate(savedInstanceState);
         this.setContentView(R.layout.main);
 
-        this.constructor = new Constructor(this);
-//        this.constructor = new ConstructorMoc(this);
+        //this.constructor = new Constructor(this);
+        this.constructor = new ConstructorMoc(this);
         listView = (ListView) findViewById(R.id.GroupListView);
 
         listView.setEmptyView(findViewById(R.id.first_view));
@@ -36,7 +36,8 @@ public class ProjectV extends Activity{
         constructor.login(Globals.USER_ID);
         constructor.getGroups();
 
-
+        Globals.GROUPLIST = listView;
+        Globals.MAIN_ACTIVITY = this;
         final Activity local = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -44,7 +45,7 @@ public class ProjectV extends Activity{
                 Intent GroupActivity = new Intent(local, GroupActivity.class);
                 Globals.GROUP = Globals.GROUPS.get(position);
                 startActivity(GroupActivity);
-                overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
+                //overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
 

@@ -89,7 +89,13 @@ public class Constructor implements ConstructorAPI {
                 try {
                     mediator.login(name, telephoneNumber, Globals.USER_REG_ID);
                 } catch (ServerErrorException e) {
-                    activity.errorCallback();
+                    activity.runOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            activity.errorCallback();
+                        }
+                    });
+
                 }
             }
         }).start();

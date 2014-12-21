@@ -7,7 +7,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.TextView;
 import org.steps.app.Activities.R;
+import org.steps.app.objects.Group;
 import org.steps.app.objects.Task;
 
 import java.util.ArrayList;
@@ -31,7 +33,15 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.task, parent, false);
         }
 
-        ImageView status = (ImageView) parent.findViewById(R.id.TaskStatus);
+//        if(group.countPendingTasks() > 0){
+//            convertView.setBackgroundColor(parent.getResources().getColor(R.color.groupHasNotifications));
+//        }
+
+        // Lookup view for data population
+        ImageView status = (ImageView) convertView.findViewById(R.id.TaskStatus);
+        TextView name = (TextView) convertView.findViewById(R.id.TaskTitle);
+
+
         Drawable statusDrawable = null;
         if(task.getStatus() == Task.STATUS_PENDING){
             statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_pending);
@@ -43,9 +53,11 @@ public class TaskAdapter extends ArrayAdapter<Task> {
             statusDrawable = parent.getResources().getDrawable(R.drawable.task_status_grey);
         }
         status.setImageDrawable(statusDrawable);
+        // Populate the data into the template view using the data object
+//        image.setImageDrawable(draw);
+        name.setText(task.getName());
 
-
-        // Return the completed view to render on screen
+//        Return the completed view to render on screen
         return convertView;
     }
 }

@@ -1,6 +1,7 @@
 package org.steps.app.Activities;
 
 import android.app.Activity;
+import android.graphics.drawable.Drawable;
 import android.media.Image;
 import android.os.Bundle;
 import android.widget.ImageView;
@@ -17,20 +18,32 @@ import org.steps.utils.Globals;
 public class GroupActivity extends Activity {
     @Override
     public void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.group_view);
-//        Group group = Globals.GROUP;
-//        //Image
-//        ImageView image = (ImageView) findViewById(R.id.GroupImageLarge);
-//        image.setImageDrawable(getResources().getDrawable(R.drawable.ic_launcher));
-//        //Name
-//        TextView name = (TextView) findViewById(R.id.GroupNameLarge);
-//        name.setText(group.getName());
-//        //tasks
-//        ListView listView = (ListView) findViewById(R.id.GroupTasks);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.group_view);
+        Group group = Globals.GROUP;
+        //Image
+        Drawable draw = null;
+        switch(group.getImageID()){
+            case 1:
+                draw = getResources().getDrawable(R.drawable.h1);
+                break;
+            case 2:
+                draw = getResources().getDrawable(R.drawable.h2);
+                break;
+            default:
+                draw = getResources().getDrawable(R.drawable.h3);
+                break;
+        }
+        ImageView image = (ImageView) findViewById(R.id.imageView2);
+        image.setImageDrawable(draw);
+        //Name
+        TextView name = (TextView) findViewById(R.id.textView);
+        name.setText(group.getName());
+        //tasks
+        ListView listView = (ListView) findViewById(R.id.GroupListView);
 //        System.out.println("bla: " + group.getTasks());
-//        TaskAdapter adapter = new TaskAdapter(this, group.getTasks());
+        TaskAdapter adapter = new TaskAdapter(this, group.getTasks());
 //
-//        listView.setAdapter(adapter);
+        listView.setAdapter(adapter);
     }
 }

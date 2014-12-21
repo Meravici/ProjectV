@@ -1,6 +1,7 @@
 package org.steps.adapters;
 
 import android.content.Context;
+import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,17 +32,30 @@ public class GroupAdapter extends ArrayAdapter<Group> {
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.group, parent, false);
         }
 
-//        if(group.countPendingTasks() > 0){
-//            convertView.setBackgroundColor(parent.getResources().getColor(R.color.groupHasNotifications));
-//        }
+        if(group.getTasksPending() > 0){
+            convertView.setBackgroundColor(parent.getResources().getColor(R.color.groupHasNotifications));
+        }
 
         // Lookup view for data population
-        ImageView tvName = (ImageView) convertView.findViewById(R.id.GroupImageSmall);
-        TextView tvHome = (TextView) convertView.findViewById(R.id.GroupNameSmall);
+        ImageView image = (ImageView) convertView.findViewById(R.id.GroupImageSmall);
+        TextView name = (TextView) convertView.findViewById(R.id.GroupNameSmall);
+
+        Drawable draw = null;
+        switch(group.getImageID()){
+            case 1:
+                draw = parent.getResources().getDrawable(R.drawable.h1);
+                break;
+            case 2:
+                draw = parent.getResources().getDrawable(R.drawable.h2);
+                break;
+            default:
+                draw = parent.getResources().getDrawable(R.drawable.h3);
+                break;
+        }
 
         // Populate the data into the template view using the data object
-        tvName.setImageDrawable(parent.getResources().getDrawable(R.drawable.ic_launcher));
-        tvHome.setText(group.getName());
+        image.setImageDrawable(draw);
+        name.setText(group.getName());
         // Return the completed view to render on screen
         return convertView;
     }

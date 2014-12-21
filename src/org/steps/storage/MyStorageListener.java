@@ -1,6 +1,7 @@
 package org.steps.storage;
 
 import android.content.Context;
+import org.steps.adapters.GroupAdapter;
 import org.steps.app.objects.Group;
 import org.steps.app.objects.Task;
 import org.steps.app.objects.User;
@@ -24,7 +25,12 @@ public class MyStorageListener extends StorageListener {
 
     @Override
     public void onGroupCreated(Group group) {
+
         Globals.GROUPS.add(group);
+        if(Globals.GROUPLIST != null){
+            GroupAdapter adapter = new GroupAdapter(Globals.MAIN_ACTIVITY, Globals.GROUPS);
+            Globals.GROUPLIST.setAdapter(adapter);
+        }
     }
 
     @Override
@@ -60,7 +66,7 @@ public class MyStorageListener extends StorageListener {
                 for(Task ct : tasks) {
                     if(ct.getId() == task.getId()){
                         ct.setVolunteer(user);
-//                        ct.setStatus(); //TODO
+                        ct.setStatus(Task.STATUS_STARTED);
                     }
                 }
             }
@@ -74,7 +80,7 @@ public class MyStorageListener extends StorageListener {
                 ArrayList<Task> tasks = cur.getTasks();
                 for(Task ct : tasks) {
                     if(ct.getId() == task.getId()){
-//                        ct.setStatus(); //TODO
+                        ct.setStatus(Task.STATUS_FINISHED);
                     }
                 }
             }
