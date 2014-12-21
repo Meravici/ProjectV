@@ -8,6 +8,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.widget.ImageButton;
 import org.steps.utils.Globals;
 
 
@@ -41,7 +45,13 @@ public class ProjectV extends Activity{
                 overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
+        ImageButton btn =(ImageButton) listView.findViewById(R.id.addGroup);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     public void errorCallback(){
@@ -57,6 +67,13 @@ public class ProjectV extends Activity{
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public ConstructorAPI getConstructor(){

@@ -84,7 +84,7 @@ public class Mediator implements MediatorAPI {
 
     private void addTask(Group groupObject, Task taskObject) throws ServerErrorException {
         groupObject.addTask(taskObject);
-        sendData("/android/group/task/" + Integer.toString(groupObject.getId()) + "/" + Integer.toString(taskObject.getId()));
+        sendData("/android/group/task/" + new Gson().toJson(taskObject,Task.class) + "/"+ groupObject.getId());
     }
 
     @Override

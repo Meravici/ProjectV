@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_settings"
+          android:title="პარამეტრები"
+          android:showAsAction="never" />
+    <item android:id="@+id/addGroup"
+          android:icon="@drawable/ic_action_add_group"
+          android:title="ჯგუფის დამატება"
+          android:showAsAction="ifRoom" />
+</menu>
