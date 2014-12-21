@@ -1,6 +1,12 @@
 package org.steps.storage;
 
 import android.content.Context;
+import org.steps.app.objects.Group;
+import org.steps.app.objects.Task;
+import org.steps.app.objects.User;
+import org.steps.utils.Globals;
+
+import java.util.ArrayList;
 
 /**
  * Created by Xato on 12/20/2014.
@@ -17,32 +23,62 @@ public class MyStorageListener extends StorageListener {
     }
 
     @Override
-    public void onGroupCreated() {
-        //TODO
+    public void onGroupCreated(Group group) {
+        Globals.GROUPS.add(group);
     }
 
     @Override
-    public void onUserAddedToGroup() {
-        //TODO
+    public void onUserAddedToGroup(Group group, User user) {
+        for(Group cur : Globals.GROUPS){
+            if(cur.getId() == group.getId()){
+                cur.addUser(user);
+            }
+        }
     }
 
     @Override
-    public void onUserLeftGroup() {
-        //TODO
+    public void onUserLeftGroup(Group group, User user) {
+        for(Group cur : Globals.GROUPS){
+            if(cur.getId() == group.getId())
+                cur.removeUser(user);
+        }
     }
 
     @Override
-    public void onTaskAddedToGroup() {
-        //TODO
+    public void onTaskAddedToGroup(Group group, Task task) {
+        for(Group cur : Globals.GROUPS){
+            if(cur.getId() == group.getId())
+                cur.addTask(task);
+        }
     }
 
     @Override
-    public void onTaskTakenInGroup() {
-        //TODO
+    public void onTaskTakenInGroup(Group group, Task task, User user) {
+        for(Group cur : Globals.GROUPS){
+            if(cur.getId() == group.getId()) {
+                ArrayList<Task> tasks = cur.getTasks();
+                for(Task ct : tasks) {
+                    if(ct.getId() == task.getId()){
+                        ct.setVolunteer(user);
+//                        ct.setStatus(); //TODO
+                    }
+                }
+            }
+        }
     }
 
     @Override
-    public void onTaskFinishedInGroup() {
-        //TODO
+    public void onTaskFinishedInGroup(Group group, Task task) {
+        for(Group cur : Globals.GROUPS){
+            if(cur.getId() == group.getId()) {
+                ArrayList<Task> tasks = cur.getTasks();
+                for(Task ct : tasks) {
+                    if(ct.getId() == task.getId()){
+//                        ct.setStatus(); //TODO
+                    }
+                }
+            }
+        }
     }
+
 }

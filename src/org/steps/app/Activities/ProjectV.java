@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import android.view.Menu;
@@ -70,6 +72,40 @@ public class ProjectV extends Activity{
         MenuInflater inflater = getMenuInflater();
         inflater.inflate(R.menu.main_activity_actions, menu);
         return super.onCreateOptionsMenu(menu);
+    }
+
+    public boolean onOptionsItemSelected(MenuItem item){
+        switch(item.getItemId()) {
+            case R.id.addGroup:
+                AlertDialog.Builder alert = new AlertDialog.Builder(this);
+
+                alert.setTitle("ჯგუფის რეგისტრაცია");
+                alert.setMessage("გთოხვთ შეიყანოთ სახელი");
+
+
+// Set an EditText view to get user input
+
+                final EditText input = new EditText(this);
+                alert.setView(input);
+                alert.setPositiveButton("წინ", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        String value = input.getText().toString();
+                        constructor.registerGroup(value);
+                    }
+                });
+
+                alert.setNegativeButton("უკან", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int whichButton) {
+                        // Canceled.
+                    }
+                });
+
+                alert.show();
+                break;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+        return false;
     }
 
     public ConstructorAPI getConstructor(){

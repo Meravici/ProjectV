@@ -13,9 +13,10 @@ import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
 import org.steps.utils.Globals;
 import org.steps.utils.ServerErrorException;
-import org.steps.utils.startGCM;
+
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /**
  * Created by Xato on 12/20/2014.
@@ -36,7 +37,7 @@ public class Constructor implements ConstructorAPI {
         telephoneNumber = getTelephoneNumber(activity.getApplicationContext());
         this.storageReader = new StorageReader(storageListener, activity);
         this.storageWriter = new StorageWriter(storageListener, activity);
-        this.mediator = new Mediator(storageReader, storageWriter);
+        this.mediator = new Mediator(storageReader, storageWriter, activity, storageListener);
 
 
         this.loadingDialog = new ProgressDialog(activity);
@@ -50,8 +51,9 @@ public class Constructor implements ConstructorAPI {
 
 
     private String getTelephoneNumber(Context context) {
-        TelephonyManager tMgr =(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
-        return tMgr.getLine1Number();
+//        TelephonyManager tMgr =(TelephonyManager)context.getSystemService(Context.TELEPHONY_SERVICE);
+//        return tMgr.getLine1Number();
+        return "+995598613468";
     }
 
     public void getGroups(){
@@ -85,7 +87,6 @@ public class Constructor implements ConstructorAPI {
             @Override
             public void run() {
                 try {
-                    startGCM gcm = new startGCM(activity, storageWriter ,activity.getApplicationContext());
                     mediator.login(name, telephoneNumber, Globals.USER_REG_ID);
                 } catch (ServerErrorException e) {
                     activity.errorCallback();
@@ -95,7 +96,22 @@ public class Constructor implements ConstructorAPI {
 
     }
 
+    @Override
+    public void registerGroup(String val) {
+        final Random rand = new Random();
+        final String name = val;
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                try {
+                    mediator.createNewGroup(name, rand.nextInt(6));
+                } catch (ServerErrorException e) {
+                    activity.errorCallback();
+                }
+            }
+        }).start();
 
+    }
 
 
     private void startSpinner(){

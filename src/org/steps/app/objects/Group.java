@@ -92,4 +92,12 @@ public class Group implements Serializable {
 
         return count;
     }
+
+    public void removeUser(User user) {
+        this.users.remove(user);
+    }
+
+    public User getLastUser() { return users.get(users.size() - 1); }
+
+    public Task getLastTask() { return tasks.get(tasks.size() - 1); }
 }

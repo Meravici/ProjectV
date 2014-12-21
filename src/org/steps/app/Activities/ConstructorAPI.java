@@ -11,4 +11,5 @@ public interface ConstructorAPI {
     public void getGroups();
     public void getGroupsCallback(ArrayList<Group> groups);
     public void login(String s);
+    void registerGroup(String name);
 }

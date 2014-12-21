@@ -154,6 +154,7 @@ public class GoogleLogin extends Activity implements
 
             Intent app = new Intent(this, ProjectV.class);
             startActivity(app);
+            finish();
         }
 
     }
