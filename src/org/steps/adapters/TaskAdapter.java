@@ -11,6 +11,7 @@ import android.widget.TextView;
 import org.steps.app.Activities.R;
 import org.steps.app.objects.Group;
 import org.steps.app.objects.Task;
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 
@@ -39,8 +40,10 @@ public class TaskAdapter extends ArrayAdapter<Task> {
 
         // Lookup view for data population
         ImageView status = (ImageView) convertView.findViewById(R.id.TaskStatus);
-        TextView name = (TextView) convertView.findViewById(R.id.TaskTitle);
-
+        TextView title = (TextView) convertView.findViewById(R.id.TaskTitle);
+        TextView author = (TextView) convertView.findViewById(R.id.TaskAuthor);
+        TextView date = (TextView) convertView.findViewById(R.id.TaskDate);
+        TextView due = (TextView) convertView.findViewById(R.id.TaskDeadline);
 
         Drawable statusDrawable = null;
         if(task.getStatus() == Task.STATUS_PENDING){
@@ -55,7 +58,11 @@ public class TaskAdapter extends ArrayAdapter<Task> {
         status.setImageDrawable(statusDrawable);
         // Populate the data into the template view using the data object
 //        image.setImageDrawable(draw);
-        name.setText(task.getName());
+        title.setText(task.getName());
+
+        date.setText(task.getCreationDate().toString());
+        due.setText(task.getDueDate().toString());
+
 
 //        Return the completed view to render on screen
         return convertView;
