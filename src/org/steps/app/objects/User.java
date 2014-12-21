@@ -7,6 +7,8 @@ import java.io.Serializable;
  */
 public class User implements Serializable {
     private String googleID;
+    private String registrationID;
+
     private String phoneNumber;
     private String registrationID;
 
@@ -23,7 +25,10 @@ public class User implements Serializable {
         this.googleID = googleID;
     }
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 4e9819fac3febd9b2933544435435a30b65346c1
     public String getRegistrationID() {
         return registrationID;
     }

@@ -98,13 +98,14 @@ public class Mediator implements MediatorAPI {
     }
 
     @Override
-    public void takeTaskInGroup() throws ServerErrorException {
-
+    public void takeTaskInGroup(Task task) throws ServerErrorException {
+        sendData("/android/task/started/" + Integer.toString(Task.STATUS_STARTED) + "/" + task.getVolunteer()
+                + "/" + Integer.toString(task.getId()));
     }
 
     @Override
-    public void finishTaskInGroup() throws ServerErrorException {
-
+    public void finishTaskInGroup(Task task) throws ServerErrorException {
+        sendData("/android/task/finished/" + Integer.toString(Task.STATUS_FINISHED) + "/" + Integer.toString(task.getId()));
     }
 
 
