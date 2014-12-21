@@ -34,6 +34,7 @@ public class ProjectV extends Activity {
         this.constructor = new Constructor(this);
 //        this.constructor = new ConstructorMoc(this);
         listView = (ListView) findViewById(R.id.GroupListView);
+
         listView.setEmptyView(findViewById(R.id.first_view));
         // Create a progress bar to display while the list loads
         ProgressBar progressBar = new ProgressBar(this);
