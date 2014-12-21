@@ -45,7 +45,7 @@ public class ProjectV extends Activity{
                 Intent GroupActivity = new Intent(local, GroupActivity.class);
                 Globals.GROUP = Globals.GROUPS.get(position);
                 startActivity(GroupActivity);
-                //overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
+                overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
 

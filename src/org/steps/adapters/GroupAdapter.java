@@ -43,13 +43,13 @@ public class GroupAdapter extends ArrayAdapter<Group> {
         Drawable draw = null;
         switch(group.getImageID()){
             case 1:
-                draw = parent.getResources().getDrawable(R.drawable.h1);
+                draw = parent.getResources().getDrawable(R.drawable.sh1);
                 break;
             case 2:
-                draw = parent.getResources().getDrawable(R.drawable.h2);
+                draw = parent.getResources().getDrawable(R.drawable.sh2);
                 break;
             default:
-                draw = parent.getResources().getDrawable(R.drawable.h3);
+                draw = parent.getResources().getDrawable(R.drawable.sh3);
                 break;
         }
 

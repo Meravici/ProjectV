@@ -20,8 +20,6 @@
         <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:maxWidth="64px"
-                android:maxHeight="64px"
                 android:id="@+id/GroupImageSmall" android:contentDescription="Group Image Small"
                 android:layout_marginRight="5dp"
                 />
