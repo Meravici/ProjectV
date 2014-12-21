@@ -5,12 +5,12 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
-import android.widget.AbsListView.LayoutParams;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 import com.example.ProjectV.R;
 import org.steps.app.objects.Group;
 import org.steps.utils.Globals;
@@ -36,13 +36,7 @@ public class ProjectV extends Activity {
         listView = (ListView) findViewById(R.id.GroupListView);
 
         listView.setEmptyView(findViewById(R.id.first_view));
-        // Create a progress bar to display while the list loads
-        ProgressBar progressBar = new ProgressBar(this);
-        Globals.PROGRESSBAR = progressBar;
-        progressBar.setLayoutParams(new LayoutParams(LayoutParams.FILL_PARENT, LayoutParams.FILL_PARENT, Gravity.CENTER));
-        progressBar.setIndeterminate(true);
-        listView.setEmptyView(progressBar);
-        //listView.setEmptyView(findViewById(R.id.first_view));
+
         constructor.login("000000000000000000000");
         constructor.getGroups();
 
@@ -61,7 +55,13 @@ public class ProjectV extends Activity {
                 overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
+        ImageButton btn =(ImageButton) listView.findViewById(R.id.addGroup);
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
     public void errorCallback(){
@@ -77,6 +77,13 @@ public class ProjectV extends Activity {
                         });
         AlertDialog alert = builder.create();
         alert.show();
+    }
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu items for use in the action bar
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.main_activity_actions, menu);
+        return super.onCreateOptionsMenu(menu);
     }
 
     public ConstructorAPI getConstructor(){
