@@ -4,7 +4,6 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.telephony.TelephonyManager;
 import android.widget.ListView;
-import com.example.ProjectV.R;
 import org.steps.adapters.GroupAdapter;
 import org.steps.app.objects.Group;
 import org.steps.app.objects.Task;
@@ -15,15 +14,11 @@ import org.steps.storage.StorageListener;
 import org.steps.storage.StorageReader;
 import org.steps.storage.StorageWriter;
 import org.steps.utils.Globals;
-import org.steps.utils.ServerErrorException;
 import org.steps.utils.startGCM;
 
-import java.lang.reflect.Array;
 import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 /**
  * Created by Xato on 12/20/2014.

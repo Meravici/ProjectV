@@ -23,7 +23,7 @@ import java.util.Calendar;
  * Created by Xato on 12/20/2014.
  */
 public class Mediator implements MediatorAPI {
-    private static final String SERVER = "http://192.168.84.157/:8888";
+    private static final String SERVER = "http://192.168.84.157:8888";
 
     private Gson gson;
     private StorageWriter storageWriter;
@@ -39,7 +39,7 @@ public class Mediator implements MediatorAPI {
         User user = new User(googleID, phoneNumber);
         user.setRegistrationID(reg_id);
         String userData = gson.toJson(user);
-        sendData("/android/user/add/" + userData);
+        sendData("/android/user/login/" + user.getGoogleID() + "/" + user.getRegistrationID() + "/" + user.getPhoneNumber());
 
         storageWriter.login(googleID, userData);
     }

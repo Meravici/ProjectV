@@ -5,29 +5,16 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.AbsListView.LayoutParams;
 import android.widget.AdapterView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.ProgressBar;
-import com.example.ProjectV.R;
-import org.steps.app.objects.Group;
 import org.steps.utils.Globals;
-import org.steps.utils.startGCM;
 
-import java.util.ArrayList;
 
-public class ProjectV extends Activity {
-    /**
-     * Called when the activity is first created.
-     */
+public class ProjectV extends Activity{
 
     private ConstructorAPI constructor;
     private ListView listView;
-    private ArrayList<Group> arrayOfGroups;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,14 +27,10 @@ public class ProjectV extends Activity {
 
         listView.setEmptyView(findViewById(R.id.first_view));
 
-        constructor.login("000000000000000000000");
+        constructor.login(Globals.USER_ID);
         constructor.getGroups();
 
 
-
-        // Must add the progress bar to the root of the layout
-//        ViewGroup root = (ViewGroup) findViewById(android.R.id.content);
-//        root.addView(progressBar);
         final Activity local = this;
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

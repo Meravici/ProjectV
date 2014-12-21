@@ -1,13 +1,9 @@
 package org.steps.app.Activities;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.telephony.TelephonyManager;
 import android.widget.ListView;
-import com.example.ProjectV.R;
 import org.steps.adapters.GroupAdapter;
 import org.steps.app.objects.Group;
 import org.steps.mediator.Mediator;
@@ -49,8 +45,6 @@ public class Constructor implements ConstructorAPI {
         loadingDialog.setMessage("გთხოვთ დაიცადოთ");
         loadingDialog.setCancelable(true);
         this.loadingDialog.show();
-
-        startGCM gcm = new startGCM(activity, storageWriter ,activity.getApplicationContext());
     }
 
 
@@ -91,6 +85,7 @@ public class Constructor implements ConstructorAPI {
             @Override
             public void run() {
                 try {
+                    startGCM gcm = new startGCM(activity, storageWriter ,activity.getApplicationContext());
                     mediator.login(name, telephoneNumber, Globals.USER_REG_ID);
                 } catch (ServerErrorException e) {
                     activity.errorCallback();
