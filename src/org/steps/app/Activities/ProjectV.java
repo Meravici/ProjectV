@@ -45,13 +45,9 @@ public class ProjectV extends Activity{
                 overridePendingTransition(R.animator.anim_right_in ,R.animator.anim_left_out);
             }
         });
-        ImageButton btn =(ImageButton) listView.findViewById(R.id.addGroup);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
 
-            }
-        });
+
+
     }
 
     public void errorCallback(){

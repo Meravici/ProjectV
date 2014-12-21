@@ -7,7 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
-import com.example.ProjectV.R;
+import org.steps.app.Activities.R;
 import org.steps.app.objects.Group;
 
 import java.util.ArrayList;

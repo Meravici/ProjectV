@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
-import com.example.ProjectV.R;
 
 /**
  * Created by Rati on 21/12/14.
@@ -17,6 +16,9 @@ public class GroupAddActivity extends Activity {
     }
     @Override
     public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.groupadd);
+
         ImageView img = (ImageView)findViewById(R.id.imageView4);
         img.setOnClickListener(new View.OnClickListener() {
             @Override
